@@ -1,0 +1,94 @@
+parameters:
+  - name: azureServiceConnection
+    type: string
+  - name: artifactName
+    type: string
+  - name: environmentToDeploy
+    type: string
+  - name: vars
+    type: object
+  - name: ConfigFileName
+    type: string
+  - name: MainCrawler
+    type: boolean
+  - name: DeleteFile
+    type: boolean
+  - name: environment
+    type: string
+
+jobs:
+  - deployment: DeployAppConfiguration
+    displayName: "Deploy Application Configuration"
+    environment:
+      name: ${{ parameters.environmentToDeploy }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - task: UsePythonVersion@0
+              displayName: "Use Python 3.10"
+              inputs:
+                versionSpec: 3.10
+                disableDownloadFromRegistry: true
+            - script: |
+                cd azure_functions                
+                pip3 install -r requirements.txt
+              displayName: "Install requirements"    
+            - task: AzureCLI@2
+              displayName: Deploy Main Crawler Configuration
+              continueOnError: false
+              condition: eq('${{ parameters.MainCrawler }}', true)
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore                
+                failOnStandardError: false
+                powerShellErrorActionPreference: "Stop"
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd ./azure_functions
+                  $env:PYTHONPATH = "."
+                  $env:KEY_VAULT_URL = "https://${{ parameters.vars.KeyVaultName }}.vault.azure.net/"
+                  python3 webcrawler/config.py `
+                    --storage-account-url ${{ parameters.vars.CrawlerConfigurationStorageAccountUrl }} `
+                    --container-name ${{ parameters.vars.CrawlerConfigurationContainerName }} `
+                    --file-path "./webcrawler/config/${{ parameters.environment }}/crawlers.yaml" `
+                    --no-validate
+            - task: AzureCLI@2
+              displayName: Deploy Crawler Configuration
+              continueOnError: false
+              condition: ne('${{ parameters.ConfigFileName }}', 'None')
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore                
+                failOnStandardError: false
+                powerShellErrorActionPreference: "Stop"
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd ./azure_functions
+                  $env:PYTHONPATH = "."
+                  $env:KEY_VAULT_URL = "https://${{ parameters.vars.KeyVaultName }}.vault.azure.net/"
+                  python3 webcrawler/config.py `
+                    --storage-account-url ${{ parameters.vars.CrawlerConfigurationStorageAccountUrl }} `
+                    --container-name ${{ parameters.vars.CrawlerConfigurationContainerName }} `
+                    --file-path "./webcrawler/config/${{ parameters.environment }}/crawlers/${{ parameters.ConfigFileName }}"
+            - task: AzureCLI@2
+              displayName: Deploy Delete Configuration
+              continueOnError: false
+              condition: eq('${{ parameters.DeleteFile }}', true)
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore                
+                failOnStandardError: false
+                powerShellErrorActionPreference: "Stop"
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd ./azure_functions
+                  $env:PYTHONPATH = "."
+                  $env:KEY_VAULT_URL = "https://${{ parameters.vars.KeyVaultName }}.vault.azure.net/"
+                  python3 webcrawler/config.py `
+                    --storage-account-url ${{ parameters.vars.CrawlerConfigurationStorageAccountUrl }} `
+                    --container-name ${{ parameters.vars.CrawlerConfigurationContainerName }} `
+                    --file-path "./webcrawler/config/${{ parameters.environment }}/delete.yaml" `
+                    --no-validate
+                 

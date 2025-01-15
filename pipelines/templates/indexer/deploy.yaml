@@ -1,0 +1,138 @@
+parameters:
+  - name: azureServiceConnection
+    type: string
+  - name: artifactName
+    type: string
+  - name: environmentToDeploy
+    type: string
+  - name: vars
+    type: object
+  - name: enablePrivateExecutionEnvironment
+    type: boolean
+jobs:
+  - deployment: DeployAISearchIndexer
+    displayName: "Deploy AI Search Indexer"
+    environment:
+      name: ${{ parameters.environmentToDeploy }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - task: UsePythonVersion@0
+              displayName: "Use Python 3.10"
+              inputs:
+                versionSpec: 3.10
+                disableDownloadFromRegistry: true
+            - script: |
+                cd indexer
+                pip3 install -r requirements.txt
+              displayName: "Install requirements"            
+            - task: AzureCLI@2
+              displayName: Build and deploy datasource
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd indexer
+                  $env:PYTHONPATH += ";$(System.DefaultWorkingDirectory)"
+                  python3 datasource.py `
+                    --search-endpoint ${{ parameters.vars.SearchEndpoint }} `
+                    --index-name ${{ parameters.vars.IndexName }} `
+                    --subscription-id ${{ parameters.vars.SubscriptionId }} `
+                    --resource-group-name ${{ parameters.vars.ResourceGroupName }} `
+                    --storage-account-name ${{ parameters.vars.StorageAccountName }} `
+                    --storage-account-url ${{ parameters.vars.StorageAccountUrl }} `
+                    --container-name ${{ parameters.vars.ContainerName }} `
+                    --verbose
+            - task: AzureCLI@2
+              displayName: Build and deploy index
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd indexer
+                  $env:PYTHONPATH += ";$(System.DefaultWorkingDirectory)"
+                  python3 index.py `
+                    --search-endpoint ${{ parameters.vars.SearchEndpoint }} `
+                    --index-name ${{ parameters.vars.IndexName }} `
+                    --azure-openai-endpoint ${{ parameters.vars.AzureOpenAiEndpoint }} `
+                    --azure-openai-embedding-deployment-name ${{ parameters.vars.AzureOpenAiEmbeddingDeploymentName }} `
+                    --azure-openai-model-name ${{ parameters.vars.AzureOpenAiModelName }} `
+                    --analyzer-name ${{ parameters.vars.AnalyzerName }} `
+                    --index-analyzer-name ${{ parameters.vars.IndexAnalyzerName }} `
+                    --search-analyzer-name ${{ parameters.vars.SearchAnalyzerName }} `
+                    --verbose
+            - task: AzureCLI@2
+              displayName: Build and deploy skillset
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd indexer
+                  $env:PYTHONPATH += ";$(System.DefaultWorkingDirectory)"
+                  python3 skillset.py `
+                    --search-endpoint ${{ parameters.vars.SearchEndpoint }} `
+                    --index-name ${{ parameters.vars.IndexName }} `
+                    --azure-openai-endpoint ${{ parameters.vars.AzureOpenAiEndpoint }} `
+                    --azure-openai-embedding-deployment-name ${{ parameters.vars.AzureOpenAiEmbeddingDeploymentName }} `
+                    --azure-openai-model-name ${{ parameters.vars.AzureOpenAiModelName }} `
+                    --verbose
+            - task: AzureCLI@2
+              displayName: Build and deploy indexer in cloud
+              continueOnError: false
+              condition: |
+                ${{ eq(parameters.enablePrivateExecutionEnvironment, false) }}
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd indexer
+                  $env:PYTHONPATH += ";$(System.DefaultWorkingDirectory)"
+                  python3 indexer.py `
+                    --search-endpoint ${{ parameters.vars.SearchEndpoint }} `
+                    --index-name ${{ parameters.vars.IndexName }} `
+                    --interval ${{ parameters.vars.IndexerInterval }} `
+                    --start-time ${{ parameters.vars.IndexerStartTime }} `
+                    --verbose
+            - task: AzureCLI@2
+              displayName: Build and deploy indexer in private
+              continueOnError: false
+              condition: |
+                ${{ eq(parameters.enablePrivateExecutionEnvironment, true) }}
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd indexer
+                  $env:PYTHONPATH += ";$(System.DefaultWorkingDirectory)"
+                  python3 indexer.py `
+                    --search-endpoint ${{ parameters.vars.SearchEndpoint }} `
+                    --index-name ${{ parameters.vars.IndexName }} `
+                    --interval ${{ parameters.vars.IndexerInterval }} `
+                    --start-time ${{ parameters.vars.IndexerStartTime }} `
+                    --use-private-endpoint `
+                    --verbose
+            - task: AzureCLI@2
+              displayName: Test index
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd indexer
+                  $env:PYTHONPATH += ";$(System.DefaultWorkingDirectory)"
+                  python3 search_test.py `
+                    --search-endpoint ${{ parameters.vars.SearchEndpoint }} `
+                    --index-name ${{ parameters.vars.IndexName }} `
+                    --query "${{ parameters.vars.TestQuery }}" `
+                    --verbose

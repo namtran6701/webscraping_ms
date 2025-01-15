@@ -1,0 +1,54 @@
+parameters:
+- name: crawlerSchedule
+  type: string
+  default: "0 */5 * * * *"
+  values:
+    - "0 */5 * * * *"
+    - "0 */15 * * * *"
+    - "0 0 */1 * * *"
+    - "0 0 */2 * * *"
+    - "0 0 */3 * * *"
+    - "0 0 */4 * * *"
+    - "0 0 */8 * * *"
+    - "0 0 */12 * * *"
+- name: prioritycrawlerSchedule
+  type: string
+  default: "0 */5 * * * *"
+  values:
+    - "0 */5 * * * *"
+    - "0 */15 * * * *"
+    - "0 0 */1 * * *"
+    - "0 0 */2 * * *"
+    - "0 0 */3 * * *"
+    - "0 0 */4 * * *"
+    - "0 0 */8 * * *"
+    - "0 0 */12 * * *"  
+  
+
+
+name: Build and deploy function app
+
+pool: 
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: deploytodev
+    displayName: Update crawler schedule in Dev
+    condition: |
+      and(eq(variables['Build.SourceBranch'], 'refs/heads/dynamiccrawler'), succeeded())
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/dev.yaml
+    pool: vmbuildserver
+    jobs:
+      - template: templates/funapp/schedule.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}
+          environmentToDeploy: ${{ variables.EnvironmentToDeploy }}
+          vars: ${{ variables }}
+          crawlerSchedule: ${{ parameters.crawlerSchedule }}
+          prioritycrawlerSchedule: ${{ parameters.prioritycrawlerSchedule }}
+          crawlers: ${{ parameters.crawlers }}
+          functionTimeout: ${{ parameters.functionTimeout }}
+          logLevel: ${{ parameters.logLevel }}

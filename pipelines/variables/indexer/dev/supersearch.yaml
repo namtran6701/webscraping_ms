@@ -1,0 +1,17 @@
+variables:
+  # Azure Search and OpenAI details for indexer deployment.
+  StorageAccountName: storageaccount
+  StorageAccountUrl: https://[].blob.core.windows.net/
+  ContainerName: container
+  AzureOpenAiEndpoint: https://[].openai.azure.com/
+  AzureOpenAiEmbeddingDeploymentName: text-embedding-ada-002
+  AzureOpenAiModelName: text-embedding-ada-002
+  SearchEndpoint: https://[].search.windows.net/
+  IndexName: index
+  TestQuery: "What is best phone for gaming?"
+  IndexerInterval: "PT30M"  
+  IndexerStartTime: "2025-02-11T00:15:00Z"
+  
+  AnalyzerName: "de.microsoft"
+  IndexAnalyzerName: None
+  SearchAnalyzerName: None

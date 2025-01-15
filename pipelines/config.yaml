@@ -1,0 +1,46 @@
+parameters:
+  - name: RunOnEnvironment
+    displayName: RunOn Environment
+    type: string
+    default: Development
+    values:
+      - Development
+  - name: MainCrawler
+    displayName: Deploy the main crawler configuration
+    type: boolean
+    default: false
+  - name: ConfigFileName
+    displayName: Configuration file name
+    type: string
+    default: None
+    values:
+      - None
+      - main.yaml
+      - priority.yaml
+
+
+name: Deploy application configuration
+
+pool: 
+  vmImage: ubuntu-latest
+
+stages:  
+  - ${{ if eq(parameters.RunOnEnvironment, 'Development') }}:
+    - stage: deploytodev
+      displayName: Deploy configuration in Dev
+      condition: |
+        eq(variables['Build.SourceBranch'], 'refs/heads/development')
+      variables:
+        - template: ./variables/app/common.yaml
+        - template: ./variables/app/dev.yaml
+      pool: vmbuildserver
+      jobs:
+        - template: templates/config/deploy.yaml
+          parameters:
+            azureServiceConnection: ${{ variables.AzureServiceConnection }}
+            artifactName: ${{ variables.BuildArtifactName }}
+            environmentToDeploy: ${{ variables.EnvironmentToDeploy }}
+            vars: ${{ variables }}
+            ConfigFileName: ${{ parameters.ConfigFileName }}
+            MainCrawler: ${{ parameters.MainCrawler }}
+            environment: dev

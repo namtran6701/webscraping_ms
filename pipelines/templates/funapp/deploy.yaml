@@ -1,0 +1,111 @@
+parameters:
+  - name: azureServiceConnection
+    type: string
+  - name: artifactName
+    type: string
+  - name: environmentToDeploy
+    type: string
+  - name: vars
+    type: object
+
+jobs:
+  - deployment: DeployFunctionApp
+    displayName: "Deploy Function App"
+    environment:
+      name: ${{ parameters.environmentToDeploy }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - task: AzureCLI@2
+              displayName: Build and publish image to Azure Container Registry
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                failOnStandardError: false
+                powerShellErrorActionPreference: "Stop"
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  cd ./azure_functions
+                  docker build -t "${{ parameters.vars.ContainerRegistryName }}.azurecr.io/${{ parameters.vars.DockerImageRepository }}:$(build.buildId)" .
+                  az acr login --name ${{ parameters.vars.ContainerRegistryName }}
+                  docker push "${{ parameters.vars.ContainerRegistryName }}.azurecr.io/${{ parameters.vars.DockerImageRepository }}:$(build.buildId)"
+            - task: AzureCLI@2
+              displayName: "Add Application Settings"
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                failOnStandardError: false
+                powerShellErrorActionPreference: "Stop"
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  az functionapp config appsettings set `
+                  --name ${{ parameters.vars.FunctionAppName }} `
+                  --resource-group ${{ parameters.vars.ResourceGroupName }} `
+                  --settings BUILD_ID=$(Build.BuildId) `
+                             FUNCTIONS_WORKER_RUNTIME=python `
+                             KEY_VAULT_URL=https://${{ parameters.vars.KeyVaultName }}.vault.azure.net/ `
+                             ADLS__blobServiceUri=https://${{ parameters.vars.LandingAreaName }}.blob.core.windows.net/ `
+                             ADLS__queueServiceUri=https://${{ parameters.vars.LandingAreaName }}.queue.core.windows.net/ `
+                             ADLS__AzureWebJobsStorage=https://${{ parameters.vars.LandingAreaName }}.blob.core.windows.net/ `
+                             CRAWLER_CONFIGURATION_STORAGE_ACCOUNT_URL="${{ parameters.vars.CrawlerConfigurationStorageAccountUrl}}" `
+                             CRAWLER_CONFIGURATION_CONTAINER_NAME="${{ parameters.vars.CrawlerConfigurationContainerName}}" `
+                             CRAWLER_RUN_SCHEDULE="${{ parameters.vars.CrawlerRunSchedule}}" `
+                             PRIORITY_CRAWLER_RUN_SCHEDULE="${{ parameters.vars.CrawlerPriorityRunSchedule}}" `
+                             CRAWLER_DELETE_SCHEDULE="${{ parameters.vars.CrawlerDeleteSchedule}}" `
+                             CRAWLER_LOG_LEVEL="${{ parameters.vars.CrawlerLogLevel}}" `
+                             CRAWLER_CONFIG_NAME="${{ parameters.vars.CrawlerConfigName}}" `
+                             PRIORITY_CRAWLER_CONFIG_NAME="${{ parameters.vars.PriorityCrawlerConfigName}}" `
+                             AzureFunctionsJobHost__functionTimeout="${{ parameters.vars.FuntionAppTimeOut}}" `                             
+                             PYTHONDONTWRITEBYTECODE=1 `
+            - task: AzureFunctionAppContainer@1
+              displayName: "Deploy Function App"
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                appName: ${{ parameters.vars.FunctionAppName }}
+                imageName: ${{ parameters.vars.ContainerRegistryName }}.azurecr.io/${{ parameters.vars.DockerImageRepository }}:$(build.buildId)
+            - task: Bash@3
+              displayName: "Prune Docker System"
+              inputs:
+                targetType: inline
+                script: |
+                  docker system prune --all --force
+            - task: AzureCLI@2
+              displayName: "Restart Function App"
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: "pscore"
+                scriptLocation: inlineScript
+                inlineScript: |
+                  az functionapp restart --resource-group ${{ parameters.vars.ResourceGroupName }} --name ${{ parameters.vars.FunctionAppName }}
+            - task: AzureCLI@2
+              condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'develop'))
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: "pscore"
+                scriptLocation: inlineScript
+                inlineScript: |
+                  sudo apt-get update
+                  sudo apt-get install -y jq
+                  az functionapp function list --resource-group ${{ parameters.vars.ResourceGroupName }} --name ${{ parameters.vars.FunctionAppName }} --query "[].{Name:name}" --output json > functions.json
+                  echo "##vso[task.setvariable variable=functionsJsonFile;]$(System.DefaultWorkingDirectory)/functions.json"
+              displayName: "Retrieve Functions List"
+              name: GetFunctionsList
+            - task: AzurePowerShell@5
+              condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'develop'))
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                ScriptPath: "$(System.DefaultWorkingDirectory)/.pipelines/templates/funapp/funcurl.ps1"
+                ScriptArguments: >
+                  -FunctionsJson "$(System.DefaultWorkingDirectory)/functions.json"
+                  -KeyVaultName ${{ parameters.vars.KeyVaultName }}
+                  -FunctionAppName ${{ parameters.vars.FunctionAppName }} 
+                  -ResourceGroupName ${{ parameters.vars.ResourceGroupName }}
+                azurePowerShellVersion: "LatestVersion"
+              displayName: "Store Function URLs in KeyVault"

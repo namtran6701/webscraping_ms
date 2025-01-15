@@ -1,0 +1,48 @@
+parameters:
+  - name: RunOnEnvironment
+    displayName: RunOn Environment
+    type: string
+    default: Development
+    values:
+      - Development
+  - name: configuration
+    type: string
+    default: "main"
+    values:
+      - main
+
+
+name: Build and deploy indexer
+
+pool: 
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: buildandtest
+    displayName: Build and Test
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/dev.yaml    
+    jobs:
+      - template: templates/indexer/build.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}
+  - stage: deploytodev
+    displayName: Deploy and Create AI Search Indexer in Dev
+    dependsOn: buildandtest
+    condition: |
+      and(eq(variables['Build.SourceBranch'], 'refs/heads/development'), succeeded())
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/dev.yaml
+      - template: ./variables/indexer/dev/${{ parameters.configuration }}.yaml
+    pool: vmbuildserver
+    jobs:
+      - template: templates/indexer/deploy.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}
+          environmentToDeploy: ${{ variables.EnvironmentToDeploy }}
+          vars: ${{ variables }}
+          enablePrivateExecutionEnvironment: false

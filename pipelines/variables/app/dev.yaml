@@ -1,0 +1,31 @@
+variables:
+  # Azure service connection and environment details.
+  AzureServiceConnection: []
+  AZURE_RM_SVC_CONNECTION: []
+  EnvironmentToDeploy: dev
+
+  SubscriptionId: []
+  ResourceGroupName: []
+  ResourceGroupLocation: []
+  FunctionAppName: []
+  KeyVaultName: []
+  AppInsightsName: []
+  searchserviceendpoint: https://[].search.windows.net/
+
+  DockerImageRepository: []
+  DockerFilePath: ./azure_functions/Dockerfile
+  ContainerRegistryName: []
+  LandingAreaName: []
+  MLWorkspaceName: []
+
+
+  CrawlerConfigurationStorageAccountUrl: https://[].blob.core.windows.net/
+  CrawlerConfigurationContainerName: mainconfig
+  CrawlerConfigName: crawlers.yaml
+  PriorityCrawlerConfigName: priority.yaml
+  CrawlerLogLevel: INFO
+  CrawlerRunSchedule: 0 */10 * * * *
+  CrawlerPriorityRunSchedule: 0 */5 * * * *
+  
+  FuntionAppTimeOut: 02:30:00
+

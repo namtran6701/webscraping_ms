@@ -1,0 +1,76 @@
+trigger:
+  branches:
+    include:
+      - main
+      - develop  
+  paths:
+    include:
+      - .pipelines/templates/funapp/*
+      - .pipelines/variables/app/*
+      - .pipelines/fnapp.yaml
+      - azure_functions
+
+name: Build and deploy function app
+
+pool: vmbuildserver
+
+stages:
+  - stage: buildandtest
+    displayName: Build and Test
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/dev.yaml    
+    jobs:
+      - template: templates/funapp/build.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}          
+          keyVaultUrl: https://${{ variables.KeyVaultName }}.vault.azure.net/
+  - stage: deploytodev
+    displayName: Deploy and Create Azure Functions in Dev
+    dependsOn: buildandtest
+    condition: |
+      and(eq(variables['Build.SourceBranch'], 'refs/heads/dynamiccrawler'), succeeded())
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/dev.yaml
+    pool: vmbuildserver
+    jobs:
+      - template: templates/funapp/deploy.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}
+          environmentToDeploy: ${{ variables.EnvironmentToDeploy }}
+          vars: ${{ variables }}
+  - stage: deploytopre
+    displayName: Deploy and Create Azure Functions in Pre-Production
+    dependsOn: buildandtest
+    condition: |
+      and(eq(variables['Build.SourceBranch'], 'refs/heads/main'), succeeded())
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/pre.yaml
+    pool: vmbuildserver
+    jobs:
+      - template: templates/funapp/deploy.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}
+          environmentToDeploy: ${{ variables.environmentToDeploy }}
+          vars: ${{ variables }}          
+  - stage: deploytoprd
+    displayName: Deploy and Create Azure Functions in Production
+    dependsOn: deploytopre
+    condition: |
+      and(eq(variables['Build.SourceBranch'], 'refs/heads/main'), succeeded())
+    variables:
+      - template: ./variables/app/common.yaml
+      - template: ./variables/app/prd.yaml
+    pool: vmprodbuildserver
+    jobs:
+      - template: templates/funapp/deploy.yaml
+        parameters:
+          azureServiceConnection: ${{ variables.AzureServiceConnection }}
+          artifactName: ${{ variables.BuildArtifactName }}
+          environmentToDeploy: ${{ variables.environmentToDeploy }}
+          vars: ${{ variables }}          

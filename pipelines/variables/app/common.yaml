@@ -1,0 +1,5 @@
+variables:
+  # Variables independent of deployment environment
+  BuildArtifactName: drop
+  UseCaseType: rag
+  RetireDocumentPipelineName: PL_retire_document

@@ -1,0 +1,49 @@
+parameters:
+  - name: azureServiceConnection
+    type: string
+  - name: artifactName
+    type: string
+  - name: environmentToDeploy
+    type: string
+  - name: vars
+    type: object
+  - name: crawlerSchedule
+    type: string
+  - name: deleteSchedule
+    type: string
+  - name: crawlers
+    type: string
+  - name: functionTimeout
+    type: string
+  - name: logLevel
+    type: string  
+
+jobs:
+  - deployment: DeployFunctionApp
+    displayName: "Deploy Function App"
+    environment:
+      name: ${{ parameters.environmentToDeploy }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - task: AzureCLI@2
+              displayName: "Update Application Settings"
+              continueOnError: false
+              inputs:
+                azureSubscription: ${{ parameters.azureServiceConnection }}
+                scriptType: pscore
+                failOnStandardError: false
+                powerShellErrorActionPreference: "Stop"
+                scriptLocation: "inlineScript"
+                inlineScript: |
+                  az functionapp config appsettings set `
+                  --name ${{ parameters.vars.FunctionAppName }} `
+                  --resource-group ${{ parameters.vars.ResourceGroupName }} `
+                  --settings CRAWLER_RUN_SCHEDULE="${{ parameters.crawlerSchedule }}" `
+                             PRIORITY_CRAWLER_RUN_SCHEDULE="${{ parameters.prioritycrawlerSchedule }}" `
+                             CRAWLER_DELETE_SCHEDULE="${{ parameters.deleteSchedule }}" `
+                             CRAWLER_LOG_LEVEL="${{ parameters.logLevel }}" `
+                             CRAWLER_CONFIG_NAME="${{ parameters.crawlers }}" `
+                             AzureFunctionsJobHost__functionTimeout="${{ parameters.functionTimeout }}"
