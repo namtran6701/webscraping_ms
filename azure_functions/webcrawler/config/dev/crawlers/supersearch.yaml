@@ -1,0 +1,34 @@
+crawler:
+  documents:
+    storage:
+      account: https://[].blob.core.windows.net/
+      container: container
+    urls:
+      - https://www.google.de/
+  crawl:
+    follow: true
+    depth: 8
+    domains:
+      - www.google.de
+    whitelist:
+      - "{^https?://([a-z0-9]*.)*google([a-z0-9]*.)*com/}"
+      - "{^https?://google.com*}"
+      - "{^https?://google.com*}"
+    blacklist:
+      - ^(file|mailto)://
+      - .(ai|asf|au|avi|bz2|bin|bmp|c|class|css|dmg|dot|dvi|eps|exe|gif|gz|h|hqx|ico|iso|jar|java|jnlp|jpeg|jpg|js|lha|md5|mov|mp3|mp4|mpg|msi|ogg|png|pps|ps|psd|ram|rm|rpm|rss|sit|swf|svg|tar|tbz|tbz2|tgz|tif|ttf|wav|wmf|wmv|z|zip)$
+      - ^https?://www.google.de
+    invalid_link_prefixes:
+      - "#"
+      - "javascript:"
+      - "tel:"
+  html:
+    striptags: false
+    parser:
+      ignored_classes:
+        - .divFooter
+        - "#divFooter"
+  logs:
+    storage:
+      account: https://[].blob.core.windows.net/
+      container: containerlogs
