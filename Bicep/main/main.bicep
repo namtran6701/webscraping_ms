@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 param rgname string
 //param location string = resourceGroup().location
-param location string = 'westeurope'
+param location string = 'westus'
 param tags object
 param aisearchname string
 param aisearchlocation string
