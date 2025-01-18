@@ -14,7 +14,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "westeurope"
+      "defaultValue": "westus"
     },
     "tags": {
       "type": "object"
