@@ -1,0 +1,246 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+    "rgname": {
+    "value": "Techconnect"
+    },
+    "PrivateEndpointSubnetName": {
+    "value": "DevProductionSubnet" 
+    },
+    "PrivateEndpointId": {
+    "value": "DevProductionSubnet"
+    },
+    "appInsightsName": {
+        "value": "gtpgenaidevgrpain"
+    },    
+    "DNS_ZONE_SUBSCRIPTION_ID": {
+    "value": "250f62f2-46bc-4a3d-b362-d04ec87c9285"
+    },
+    "PrivateDNSZoneRgName": {
+    "value": "Techconnect"
+    },
+    "VnetforPrivateEndpointsRgName": {
+    "value": "Techconnect"
+    },
+    "VnetforPrivateEndpointsName": {
+    "value": "Techconnectvnet"    
+    },
+    "aisearchname": {
+    "value": "gtptchconaisearch"
+    },
+    "aisearchlocation": {
+    "value": "westeurope"
+    },
+    "enabledForTemplateDeployment": {
+      "value": true
+    },
+    "enabledForDiskEncryption": {
+      "value": true
+    },
+    "enabledForDeployment": {
+      "value": true
+    },
+    "enablePurgeProtection": {
+      "value": false
+    },
+    "softDeleteRetentionInDays": {
+      "value": 90
+    },
+    "sku": {
+      "value": "standard"
+    },
+    "enableDiagnostics": {
+      "value": true
+    },
+    "publicNetworkAccessForIngestion": {
+        "value": "Enabled"
+      },
+      "publicNetworkAccessForQuery": {
+        "value": "Enabled"
+      },
+      "log_sku_name": {
+        "value": "PerGB2018"
+      },
+      "enableDataExport": {
+        "value": true
+      },
+      "enableLogAccessUsingOnlyResourcePermissions": {
+        "value": false
+      },
+      "immediatePurgeDataOn30Days": {
+        "value": false
+      },
+      "dailyQuotaGb": {
+        "value": -1
+      },
+      "keyVaultName": {
+        "value": "gtpgenaitchckv"
+      },
+      "secrets": {
+        "value": [
+          {
+            "name": "landing-storage-account",
+            "value": "https://<landing-storage-account-name>.blob.core.windows.net/"
+          },
+          {
+            "name": "ai-language-endpoint",
+            "value": "https://<ai-language-endpoint>.cognitiveservices.azure.com/"
+          },
+          {
+            "name": "ai-search-endpoint",
+            "value": "https://<ai-search-endpoint>.search.windows.net"
+          },
+          {
+            "name": "document-intelligence-endpoint",
+            "value": "https://<document-intelligence-endpoint>.cognitiveservices.azure.com/"
+          },
+          {
+            "name": "openai-endpoint",
+            "value": "https://<openai-endpoint>.openai.azure.com/"
+          },
+          {
+            "name": "sql-server-name",
+            "value": "<sql-server-name>"
+          },
+          {
+            "name": "sql-database-name",
+            "value": "<sql-database-name>"
+          },
+          {
+            "name": "unit-test",
+            "value": "unit-test-secret"
+          },
+          {
+            "name": "function-app-url",
+            "value": "https://<function-app-url>.azurewebsites.net"
+          },
+          {
+            "name": "function-app-key",
+            "value": "<function-app-key>"
+          },
+          {
+            "name": "app-insights-instkey",
+            "value": "<application insights instrumentation key>"
+          }
+        ]
+      },
+      "appserviceplan_sku": {
+        "value": "ElasticPremium"
+    },
+    "appserviceplan_skuCode": {
+        "value": "EP1"
+    },
+    "reserved": {
+        "value": true
+    },
+    "maximumElasticWorkerCount": {
+        "value": 1
+    },
+    "storageAccountType": {
+        "value": "Standard_ZRS"
+      },
+      "accessTier": {
+        "value": "Hot"
+      },
+      "isHnsEnabled": {
+        "value": false
+      },
+      "requireInfrastructureEncryption": {
+        "value": true
+      },
+      "softDeleteEnabled": {
+        "value": false
+      },
+      "deployblobPE": {
+        "value": true
+      },
+      "deploydfsPE": {
+        "value": false
+      },
+      "deployfilePE": {
+        "value": true
+      },
+      "deployqueuePE": {
+        "value": true
+      },
+      "deploytablePE": {
+        "value": true
+      },
+      "retentionInDays": {
+        "value": 90
+      },
+    "sku_name": {
+        "value": "standard"
+      
+    },
+    "disableLocalAuth": {
+        "value": false
+    },
+    "partitionCount": {
+        "value": 1
+    },
+    "replicaCount": {
+        "value": 1
+    },
+    "hostingMode": {
+        "value": "default"
+    },
+    "semanticSearch": {
+        "value": "standard"
+    },
+
+    "tags": {
+      "value": {
+          "infra": "techcon"
+      }
+  },
+      "deployments": {
+        "value": []
+      },
+    "appServicePlanName":{
+        "value": "gtpgenaidevdefnp"
+    },
+    "storageAccountName": {
+        "value": "gtpgenaitchconstor"
+    },
+    "containerName":{
+      "value": "gtpgenaistortechcont"
+    },
+    "dockerRegistryUrl": {
+    "value": "gtpgenaicontainer.azurecr.io"
+    },
+    "dockerRegistryUsername": {
+    "value": "gtpgenaidevdecon"
+    },
+    "vnetName": {
+    "value": "Techconnectvnet"
+    },
+    "vnetAddressSpace": {
+    "value": "10.240.4.0/23"
+    },
+    "VnetForResourcesRgName":{
+    "value": "Techconnect"
+    },
+    "VnetForResourcesName": {
+    "value": "VnetForResourcesName"
+    },
+    "azurePAASResourcesSubnetAddressSpace": {
+    "value": "10.240.4.240/28"
+    },
+    "logAnalyticsSubscriptionId": {
+    "value": "250f62f2-46bc-4a3d-b362-d04ec87c9285"
+    },
+    "logAnalyticsRG": {
+    "value": "Techconnect"
+    },
+    "logAnalyticsName": {
+    "value": "gtpgenailogtechcon"
+    } 
+
+
+    
+  
+}
+}
