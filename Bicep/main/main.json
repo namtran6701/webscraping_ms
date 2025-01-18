@@ -14,7 +14,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "westus"
+      "defaultValue": "EASTUS"
     },
     "tags": {
       "type": "object"
