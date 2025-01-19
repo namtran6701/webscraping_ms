@@ -10,36 +10,45 @@
   },
   "parameters": {
     "rgname": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "TechconRG"
     },
     "location": {
       "type": "string",
       "defaultValue": "EASTUS"
     },
     "tags": {
-      "type": "object"
+      "type": "object",
+      "defaultValue": {
+      "infra": "techcon"
     },
     "aisearchname": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtptchconaisearch"
     },
     "aisearchlocation": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "EASTUS"
     },
     "sku_name": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "standard"     
     },
     "disableLocalAuth": {
       "type": "bool",
       "defaultValue": true
     },
     "partitionCount": {
-      "type": "int"
+      "type": "int",
+      "defaultValue": 1
     },
     "replicaCount": {
-      "type": "int"
+      "type": "int",
+      "defaultValue": 1
     },
     "hostingMode": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": default
     },
     "semanticSearch": {
       "type": "string",
@@ -54,22 +63,28 @@
       "defaultValue": []
     },
     "appInsightsName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaidevgrpain"
     },
     "deployblobPE": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "deploydfsPE": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": false
     },
     "deployfilePE": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "deployqueuePE": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "deploytablePE": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "DNS_ZONE_SUBSCRIPTION_ID": {
       "type": "string"
@@ -81,13 +96,16 @@
       "type": "string"
     },
     "VnetforPrivateEndpointsName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "Techconnectvnet"
     },
     "PrivateEndpointSubnetName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "DevProductionSubnet"
     },
     "PrivateEndpointId": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "DevProductionSubnet"
     },
     "DeployResourcesWithPublicAccess": {
       "type": "string",
@@ -118,19 +136,24 @@
       "defaultValue": "False"
     },
     "appServicePlanName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaidevdefnp"
     },
     "appserviceplan_sku": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "ElasticPremium"
     },
     "appserviceplan_skuCode": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "EP1"
     },
     "reserved": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "maximumElasticWorkerCount": {
-      "type": "int"
+      "type": "int",
+      "defaultValue": 1
     },
     "functionWorkerRuntime": {
       "type": "string",
@@ -145,29 +168,36 @@
       "defaultValue": "gtpgenaidevdefnp"
     },
     "storageAccountName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaitchconstor"
     },
     "functionApplinuxFxVersion": {
       "type": "string",
       "defaultValue": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
     },
     "dockerRegistryUrl": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaicontainer.azurecr.io"
     },
     "dockerRegistryUsername": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaidevdecon"
     },
     "vnetName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "Techconnectvnet"
     },
     "vnetAddressSpace": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "10.240.4.0/23"
     },
     "VnetForResourcesRgName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "TechconRG"
     },
     "VnetForResourcesName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "Techconnectvnet"
     },
     "FunctionAppSubnetName": {
       "type": "string",
@@ -182,7 +212,8 @@
       "defaultValue": "ApiManagementSubnet"
     },
     "azurePAASResourcesSubnetAddressSpace": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "10.240.4.240/28"
     },
     "logicAppSubnetAddressSpace": {
       "type": "string",
@@ -273,25 +304,31 @@
       "defaultValue": "True"
     },
     "sku": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "standard"
     },
     "keyVaultName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaitchckv"
     },
     "secrets": {
       "type": "array"
     },
     "enabledForTemplateDeployment": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "enabledForDiskEncryption": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "enabledForDeployment": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "softDeleteRetentionInDays": {
-      "type": "int"
+      "type": "int",
+      "defaultValue": 90
     },
     "DeployPurgeProtection": {
       "type": "string",
@@ -309,10 +346,12 @@
       "type": "string"
     },
     "logAnalyticsRG": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "TechconRG"
     },
     "logAnalyticsName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenailogtechcon"
     },
     "publicNetworkAccessForIngestion": {
       "type": "string",
@@ -337,7 +376,8 @@
       }
     },
     "log_sku_name": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "PerGB2018"
     },
     "retentionInDays": {
       "type": "int",
@@ -366,29 +406,36 @@
         "Standard_GRS",
         "Standard_ZRS",
         "Premium_LRS"
-      ]
+      ],
+      "defaultValue": "Standard_ZRS"
     },
     "accessTier": {
       "type": "string",
       "allowedValues": [
         "Hot",
         "Cool"
-      ]
+      ],
+      "defaultValue": "Hot"
     },
     "containerName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "gtpgenaistortechcont"
     },
     "isHnsEnabled": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": false
     },
     "requireInfrastructureEncryption": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     },
     "softDeleteEnabled": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": false
     },
     "enableDiagnostics": {
-      "type": "bool"
+      "type": "bool",
+      "defaultValue": true
     }
   },
   "resources": [
