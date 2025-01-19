@@ -224,7 +224,7 @@
     "value": "Techconnect"
     },
     "VnetForResourcesName": {
-    "value": "VnetForResourcesName"
+    "value": "Techconnectvnet"
     },
     "azurePAASResourcesSubnetAddressSpace": {
     "value": "10.240.4.240/28"
