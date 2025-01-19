@@ -48,7 +48,7 @@
     },
     "hostingMode": {
       "type": "string",
-      "defaultValue": default
+      "defaultValue": "default"
     },
     "semanticSearch": {
       "type": "string",
