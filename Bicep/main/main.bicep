@@ -22,7 +22,7 @@ param deployqueuePE bool
 param deploytablePE bool
 
 
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_ID string
 param PrivateDNSZoneRgName string
 param VnetforPrivateEndpointsRgName string
 param VnetforPrivateEndpointsName string
@@ -232,7 +232,7 @@ module keyVaultModule '../keyvault/deploy.bicep' = {
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
   }
   dependsOn:[dnsModule]
@@ -255,7 +255,7 @@ module dnsZones '../private_dns_zone_create/deploy.bicep' = {
   scope: resourceGroup(rgname)
   name: 'dnsZonesModule'
   params: {
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
   }
   dependsOn:[vnetModule,subnetModule]
@@ -287,7 +287,7 @@ module dnsModule '../private-dns-zone-orchestrator/deploy.bicep' = {
     DeployAzureOpenAI: DeployAzureOpenAI
     VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     //vnet_id: vnet_id
   }
@@ -313,7 +313,7 @@ module storageAccount '../storageaccount/deploy.bicep' = {
     VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     deployblobPE: deployblobPE
     deploydfsPE: deploydfsPE
@@ -349,7 +349,7 @@ module m_ai_search '../ai search/deploy.bicep' = {
     replicaCount: replicaCount
     hostingMode: hostingMode
     semanticSearch: semanticSearch
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
@@ -398,7 +398,7 @@ module functionAppModule '../functionapp/deploy.bicep' = {
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     dockerRegistryUrl: dockerRegistryUrl
     dockerRegistryUsername: dockerRegistryUsername
@@ -423,7 +423,7 @@ module cognitiveServiceModule '../openai_service/deploy.bicep' = {
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     deployments: deployments
   }
