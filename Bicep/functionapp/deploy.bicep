@@ -14,7 +14,7 @@ param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_ID string
 param PrivateDNSZoneRgName string
 
 param dockerRegistryUrl string
@@ -116,7 +116,7 @@ module m_functionapp_private_endpoint '../private_endpoint/deploy.bicep' = {
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     privateDnsZoneName:privateDnsZoneName
     privateDnsZoneConfigsName:replace(privateDnsZoneName,'.','-')
