@@ -23,7 +23,6 @@ param deploytablePE bool
 
 
 param SUBSCRIPTION_ID string
-param rgname string
 param VnetforPrivateEndpointsRgName string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
