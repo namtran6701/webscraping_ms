@@ -6152,8 +6152,8 @@
           "VnetForResourcesRgName": {
             "value": "[parameters('VnetForResourcesRgName')]"
           },
-          "VnetForResourcesName": {
-            "value": "[parameters('VnetForResourcesName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "FunctionAppSubnetName": {
             "value": "[parameters('FunctionAppSubnetName')]"
@@ -6219,7 +6219,7 @@
             "VnetForResourcesRgName": {
               "type": "string"
             },
-            "VnetForResourcesName": {
+            "vnetName": {
               "type": "string"
             },
             "FunctionAppSubnetName": {
@@ -6330,7 +6330,7 @@
               "apiVersion": "2022-03-01",
               "name": "[format('{0}/{1}', parameters('functionAppName'), 'virtualNetwork')]",
               "properties": {
-                "subnetResourceId": "[resourceId(parameters('VnetForResourcesRgName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('VnetForResourcesName'), parameters('FunctionAppSubnetName'))]",
+                "subnetResourceId": "[resourceId(parameters('VnetForResourcesRgName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('FunctionAppSubnetName'))]",
                 "swiftSupported": true
               },
               "dependsOn": [
