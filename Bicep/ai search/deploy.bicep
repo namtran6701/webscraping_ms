@@ -35,7 +35,7 @@ param DeployWithCustomNetworking string = 'True'
 param CreatePrivateEndpoints string = 'True'
 param CreatePrivateEndpointsInSameRgAsResource string = 'False'
 param UseManualPrivateLinkServiceConnections string = 'False'
-param VnetforPrivateEndpointsName string
+param vnetName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
@@ -101,7 +101,7 @@ module m_ai_search_private_endpoint '../private_endpoint/deploy.bicep' = if (vne
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
