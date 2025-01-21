@@ -43,7 +43,6 @@ param DeployWithCustomNetworking string = 'True'
 param CreatePrivateEndpoints string = 'True'
 param CreatePrivateEndpointsInSameRgAsResource string = 'False'
 param UseManualPrivateLinkServiceConnections string = 'False'
-param rgname string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
@@ -64,7 +63,7 @@ var defaultAction = (DeployResourcesWithPublicAccess == 'True' && ipRangeFilter 
 
 //dns zone
 @secure()
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_ID string
 param rgname string
 var blobprivateDnsZoneName = 'privatelink.blob.${environment().suffixes.storage}'
 var dfsprivateDnsZoneName = 'privatelink.dfs.${environment().suffixes.storage}'
@@ -205,7 +204,7 @@ module m_blob_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
     privateDnsZoneName:blobprivateDnsZoneName
     privateDnsZoneConfigsName:replace(blobprivateDnsZoneName,'.','-')
@@ -228,7 +227,7 @@ module m_dfs_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInteg
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
     privateDnsZoneName:dfsprivateDnsZoneName
     privateDnsZoneConfigsName:replace(dfsprivateDnsZoneName,'.','-')
@@ -250,7 +249,7 @@ module m_file_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
     privateDnsZoneName:fileprivateDnsZoneName
     privateDnsZoneConfigsName:replace(fileprivateDnsZoneName,'.','-')
@@ -272,7 +271,7 @@ module m_queue_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
     privateDnsZoneName:queueprivateDnsZoneName
     privateDnsZoneConfigsName:replace(queueprivateDnsZoneName,'.','-')
@@ -294,7 +293,7 @@ module m_table_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
     privateDnsZoneName:tableprivateDnsZoneName
     privateDnsZoneConfigsName:replace(tableprivateDnsZoneName,'.','-')
