@@ -35,7 +35,6 @@ param DeployWithCustomNetworking string = 'True'
 param CreatePrivateEndpoints string = 'True'
 param CreatePrivateEndpointsInSameRgAsResource string = 'False'
 param UseManualPrivateLinkServiceConnections string = 'False'
-param rgname string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
