@@ -45,7 +45,7 @@ var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?res
 
 //dns zone
 @secure()
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_ID string
 param PrivateDNSZoneRgName string
 var privateDnsZoneName = 'privatelink.search.windows.net'
 
@@ -105,7 +105,7 @@ module m_ai_search_private_endpoint '../private_endpoint/deploy.bicep' = if (vne
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     privateDnsZoneName:privateDnsZoneName
     privateDnsZoneConfigsName:replace(privateDnsZoneName,'.','-')
