@@ -20,7 +20,7 @@ param DeployAzureOpenAI string = 'True'
 
 param VnetforPrivateEndpointsRgName string
 param VnetforPrivateEndpointsName string
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_ID string
 param PrivateDNSZoneRgName string
 
 resource r_vnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
@@ -32,7 +32,7 @@ resource r_vnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
 var blobprivateDnsZoneName = 'privatelink.blob.${environment().suffixes.storage}'
 module m_blob_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake == 'True' ||  DeployLandingStorage == 'True' || DeployPurview == 'True') {
   name: 'blob_private_endpoint'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: blobprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -44,7 +44,7 @@ module m_blob_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake =
 var dfsprivateDnsZoneName = 'privatelink.dfs.${environment().suffixes.storage}'
 module m_df_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake == 'True' ||  DeployLandingStorage == 'True') {
   name: 'dfs_private_endpoint'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: dfsprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -56,7 +56,7 @@ module m_df_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake == 
 var fileprivateDnsZoneName = 'privatelink.file.${environment().suffixes.storage}'
 module m_file_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspace == 'True' || DeployLandingStorage == 'True' || DeployLogicApp == 'True') {
   name: 'file_private_endpoint'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: fileprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -68,7 +68,7 @@ module m_file_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspac
 var queueprivateDnsZoneName = 'privatelink.queue.${environment().suffixes.storage}'
 module m_queue_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspace == 'True' || DeployLandingStorage == 'True' || DeployLogicApp == 'True' || DeployPurview == 'True') {
   name: 'queue_private_endpoint'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: queueprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -80,7 +80,7 @@ module m_queue_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspa
 var tableprivateDnsZoneName = 'privatelink.table.${environment().suffixes.storage}'
 module m_table_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake == 'True' || DeployLandingStorage == 'True' || DeployLogicApp == 'True') {
   name: 'table_private_endpoint'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: tableprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -92,7 +92,7 @@ module m_table_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake 
 var sqlPrivateDnsZoneName = 'privatelink${environment().suffixes.sqlServerHostname}'
 module m_sql_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureSQL == 'True') {
   name: 'sql_private_endpoint'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: sqlPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -104,7 +104,7 @@ module m_sql_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureSQL ==
 var cognitiveServicePrivateDnsZoneName = 'privatelink.cognitiveservices.azure.com'
 module m_cognitive_service_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployCognitiveService == 'True') {
   name: 'cognitive_service_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: cognitiveServicePrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -116,7 +116,7 @@ module m_cognitive_service_dns_zone '../private-dns-zone/deploy.bicep' = if (Dep
 var openAIPrivateDnsZoneName = 'privatelink.openai.azure.com'
 module m_openai_service_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureOpenAI == 'True') {
   name: 'openai_service_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: openAIPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -128,7 +128,7 @@ module m_openai_service_dns_zone '../private-dns-zone/deploy.bicep' = if (Deploy
 var adfPortalPrivateDnsZoneName = 'privatelink.adf.azure.com'
 module m_data_factory_portal_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployADF == 'True' && DeployADFPortalPrivateEndpoint == 'True') {
   name: 'data_factory_portal_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: adfPortalPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -140,7 +140,7 @@ module m_data_factory_portal_dns_zone '../private-dns-zone/deploy.bicep' = if (D
 var adfPrivateDnsZoneName = 'privatelink.datafactory.azure.net'
 module m_data_factory_dataFactory_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployADF == 'True') {
   name: 'data_factory_dataFactory_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: adfPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -152,7 +152,7 @@ module m_data_factory_dataFactory_dns_zone '../private-dns-zone/deploy.bicep' = 
 var eventhubPrivateDnsZone='privatelink.servicebus.windows.net'
 module m_event_hub_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployEventHubNamespace == 'True' || DeployPurview == 'True') {
   name: 'event_hub_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: eventhubPrivateDnsZone
     vnetName: VnetforPrivateEndpointsName
@@ -164,7 +164,7 @@ module m_event_hub_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployEvent
 var keyVaultPrivateDnsZoneName = 'privatelink.vaultcore.azure.net'
 module m_key_vault_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployKeyVault == 'True') {
   name: 'key_vault_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: keyVaultPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -176,7 +176,7 @@ module m_key_vault_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployKeyVa
 var WebsitesPrivateDnsZoneName = 'privatelink.azurewebsites.net'
 module m_websites_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployLogicApp == 'True' || DeployFunctionApp == 'True') {
   name: 'websites_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: WebsitesPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -188,7 +188,7 @@ module m_websites_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployLogicA
 var purviewPortalprivateDnsZoneName = 'privatelink.purviewstudio.azure.com'
 module m_purview_portal_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployPurview == 'True' && DeployPurviewPrivateEndpoints == 'True') {
   name: 'purview_portal_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: purviewPortalprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -200,7 +200,7 @@ module m_purview_portal_dns_zone '../private-dns-zone/deploy.bicep' = if (Deploy
 var purviewAccountprivateDnsZoneName = 'privatelink.purview.azure.com'
 module m_purview_account_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployPurview == 'True' && DeployPurviewPrivateEndpoints == 'True') {
   name: 'purview_account_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: purviewAccountprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -212,7 +212,7 @@ module m_purview_account_dns_zone '../private-dns-zone/deploy.bicep' = if (Deplo
 var synapseDevprivateDnsZoneName = 'privatelink.dev.azuresynapse.net'
 module m_synapse_dev_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySynapse == 'True') {
   name: 'synapse_dev_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: synapseDevprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -224,7 +224,7 @@ module m_synapse_dev_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySyn
 var synapseSqlprivateDnsZoneName = 'privatelink.sql.azuresynapse.net'
 module m_synapse_sql_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySynapse == 'True') {
   name: 'synapse_sql_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: synapseSqlprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -236,7 +236,7 @@ module m_synapse_sql_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySyn
 var synapsePrivatelinkhubprivateDnsZoneName = 'privatelink.azuresynapse.net'
 module m_synapse_web_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySynapse == 'True' && DeploySynapseWebPrivateEndpoint == 'True') {
   name: 'synapse_web_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: synapsePrivatelinkhubprivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -248,7 +248,7 @@ module m_synapse_web_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySyn
 var containerRegistryPrivateDnsZoneName = 'privatelink${environment().suffixes.acrLoginServer}'
 module m_container_registry_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspace == 'True') {
   name: 'container_registry_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: containerRegistryPrivateDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -260,7 +260,7 @@ module m_container_registry_dns_zone '../private-dns-zone/deploy.bicep' = if (De
 var mlWorkspaceprivateDnsZoneName1 = 'privatelink.api.azureml.ms'
 module m_ml_workspace_api_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspace == 'True') {
   name: 'ml_workspace_api_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: mlWorkspaceprivateDnsZoneName1
     vnetName: VnetforPrivateEndpointsName
@@ -272,7 +272,7 @@ module m_ml_workspace_api_dns_zone '../private-dns-zone/deploy.bicep' = if (Depl
 var mlWorkspaceprivateDnsZoneName2 = 'privatelink.notebooks.azure.net'
 module m_ml_workspace_notebook_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspace == 'True') {
   name: 'ml_workspace_notebook_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: mlWorkspaceprivateDnsZoneName2
     vnetName: VnetforPrivateEndpointsName
@@ -284,7 +284,7 @@ module m_ml_workspace_notebook_dns_zone '../private-dns-zone/deploy.bicep' = if 
 var databricksWorkspaceDnsZoneName = 'privatelink.azuredatabricks.net'
 module m_databricksWorkspace_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDatabricks == 'True') {
   name: 'databricksWorkspace_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: databricksWorkspaceDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -295,7 +295,7 @@ module m_databricksWorkspace_dns_zone '../private-dns-zone/deploy.bicep' = if (D
 var searchDnsZoneName = 'privatelink.search.windows.net'
 module m_search_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureSearch == 'True') {
   name: 'search_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: searchDnsZoneName
     vnetName: VnetforPrivateEndpointsName
@@ -306,7 +306,7 @@ module m_search_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureSea
 var apiManagementDnsZoneName = 'privatelink.azure-api.net'
 module m_api_management_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAPIManagement == 'True') {
   name: 'api_management_dns_zone'
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   params: {
     privateDnsZoneName: apiManagementDnsZoneName
     vnetName: VnetforPrivateEndpointsName
