@@ -89,10 +89,6 @@
     "SUBSCRIPTION_ID": {
       "type": "string"
     },
-    "VnetforPrivateEndpointsName": {
-      "type": "string",
-      "defaultValue": "Techconnectvnet"
-    },
     "PrivateEndpointSubnetName": {
       "type": "string",
       "defaultValue": "DevProductionSubnet"
@@ -188,10 +184,6 @@
     "VnetForResourcesRgName": {
       "type": "string",
       "defaultValue": "TechconRG"
-    },
-    "VnetForResourcesName": {
-      "type": "string",
-      "defaultValue": "Techconnectvnet"
     },
     "FunctionAppSubnetName": {
       "type": "string",
@@ -1573,8 +1565,8 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "VnetforPrivateEndpointsName": {
-            "value": "[parameters('VnetforPrivateEndpointsName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -1684,7 +1676,7 @@
             "rgname": {
               "type": "string"
             },
-            "VnetforPrivateEndpointsName": {
+            "vnetName": {
               "type": "string"
             },
             "PrivateEndpointSubnetName": {
@@ -1772,8 +1764,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -1829,7 +1821,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -1884,7 +1876,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -2869,8 +2861,8 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "VnetforPrivateEndpointsName": {
-            "value": "[parameters('VnetforPrivateEndpointsName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "SUBSCRIPTION_ID": {
             "value": "[parameters('SUBSCRIPTION_ID')]"
@@ -2969,7 +2961,7 @@
             "rgname": {
               "type": "string"
             },
-            "VnetforPrivateEndpointsName": {
+            "vnetName": {
               "type": "string"
             },
             "SUBSCRIPTION_ID": {
@@ -3023,7 +3015,7 @@
                     "value": "[variables('blobprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3082,7 +3074,7 @@
                     "value": "[variables('dfsprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3141,7 +3133,7 @@
                     "value": "[variables('fileprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3200,7 +3192,7 @@
                     "value": "[variables('queueprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3259,7 +3251,7 @@
                     "value": "[variables('tableprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3318,7 +3310,7 @@
                     "value": "[variables('sqlPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3377,7 +3369,7 @@
                     "value": "[variables('cognitiveServicePrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3436,7 +3428,7 @@
                     "value": "[variables('openAIPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3495,7 +3487,7 @@
                     "value": "[variables('adfPortalPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3554,7 +3546,7 @@
                     "value": "[variables('adfPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3613,7 +3605,7 @@
                     "value": "[variables('eventhubPrivateDnsZone')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3672,7 +3664,7 @@
                     "value": "[variables('keyVaultPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3731,7 +3723,7 @@
                     "value": "[variables('WebsitesPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3790,7 +3782,7 @@
                     "value": "[variables('purviewPortalprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3849,7 +3841,7 @@
                     "value": "[variables('purviewAccountprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3908,7 +3900,7 @@
                     "value": "[variables('synapseDevprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -3967,7 +3959,7 @@
                     "value": "[variables('synapseSqlprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4026,7 +4018,7 @@
                     "value": "[variables('synapsePrivatelinkhubprivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4085,7 +4077,7 @@
                     "value": "[variables('containerRegistryPrivateDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4144,7 +4136,7 @@
                     "value": "[variables('mlWorkspaceprivateDnsZoneName1')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4203,7 +4195,7 @@
                     "value": "[variables('mlWorkspaceprivateDnsZoneName2')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4262,7 +4254,7 @@
                     "value": "[variables('databricksWorkspaceDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4321,7 +4313,7 @@
                     "value": "[variables('searchDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4380,7 +4372,7 @@
                     "value": "[variables('apiManagementDnsZoneName')]"
                   },
                   "vnetName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                    "value": "[parameters('vnetName')]"
                   }
                 },
                 "template": {
@@ -4470,8 +4462,8 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "VnetforPrivateEndpointsName": {
-            "value": "[parameters('VnetforPrivateEndpointsName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -4599,7 +4591,7 @@
             "rgname": {
               "type": "string"
             },
-            "VnetforPrivateEndpointsName": {
+            "vnetName": {
               "type": "string"
             },
             "PrivateEndpointSubnetName": {
@@ -4798,8 +4790,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -4855,7 +4847,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -4910,7 +4902,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -4961,8 +4953,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -5018,7 +5010,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -5073,7 +5065,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -5124,8 +5116,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -5181,7 +5173,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -5236,7 +5228,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -5287,8 +5279,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -5344,7 +5336,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -5399,7 +5391,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -5450,8 +5442,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -5507,7 +5499,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -5562,7 +5554,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -5698,8 +5690,8 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "VnetforPrivateEndpointsName": {
-            "value": "[parameters('VnetforPrivateEndpointsName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -5802,7 +5794,7 @@
             "rgname": {
               "type": "string"
             },
-            "VnetforPrivateEndpointsName": {
+            "vnetName": {
               "type": "string"
             },
             "PrivateEndpointSubnetName": {
@@ -5890,8 +5882,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -5947,7 +5939,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -6002,7 +5994,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -6172,8 +6164,8 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "VnetforPrivateEndpointsName": {
-            "value": "[parameters('VnetforPrivateEndpointsName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -6240,7 +6232,7 @@
             "rgname": {
               "type": "string"
             },
-            "VnetforPrivateEndpointsName": {
+            "vnetName": {
               "type": "string"
             },
             "PrivateEndpointSubnetName": {
@@ -6362,8 +6354,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -6419,7 +6411,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -6474,7 +6466,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
@@ -6554,8 +6546,8 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "VnetforPrivateEndpointsName": {
-            "value": "[parameters('VnetforPrivateEndpointsName')]"
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
           },
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -6659,7 +6651,7 @@
             "rgname": {
               "type": "string"
             },
-            "VnetforPrivateEndpointsName": {
+            "vnetName": {
               "type": "string"
             },
             "PrivateEndpointSubnetName": {
@@ -6746,8 +6738,8 @@
                   "rgname": {
                     "value": "[parameters('rgname')]"
                   },
-                  "VnetforPrivateEndpointsName": {
-                    "value": "[parameters('VnetforPrivateEndpointsName')]"
+                  "vnetName": {
+                    "value": "[parameters('vnetName')]"
                   },
                   "PrivateEndpointSubnetName": {
                     "value": "[parameters('PrivateEndpointSubnetName')]"
@@ -6803,7 +6795,7 @@
                     "rgname": {
                       "type": "string"
                     },
-                    "VnetforPrivateEndpointsName": {
+                    "vnetName": {
                       "type": "string"
                     },
                     "PrivateEndpointSubnetName": {
@@ -6858,7 +6850,7 @@
                       "location": "[parameters('location')]",
                       "properties": {
                         "subnet": {
-                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('VnetforPrivateEndpointsName')), parameters('PrivateEndpointSubnetName'))]"
+                          "id": "[format('{0}/subnets/{1}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('VnetforPrivateEndpointsSubscriptionId'), parameters('rgname')), 'Microsoft.Network/virtualNetworks', parameters('vnetName')), parameters('PrivateEndpointSubnetName'))]"
                         },
                         "customNetworkInterfaceName": "[format('{0}-nic', variables('peName'))]",
                         "privateLinkServiceConnections": "[if(equals(parameters('UseManualPrivateLinkServiceConnections'), 'True'), null(), variables('privateLinkServiceConnections'))]",
