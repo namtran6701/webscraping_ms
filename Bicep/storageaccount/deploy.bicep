@@ -65,7 +65,7 @@ var defaultAction = (DeployResourcesWithPublicAccess == 'True' && ipRangeFilter 
 //dns zone
 @secure()
 param DNS_ZONE_SUBSCRIPTION_ID string
-param PrivateDNSZoneRgName string
+param rgname string
 var blobprivateDnsZoneName = 'privatelink.blob.${environment().suffixes.storage}'
 var dfsprivateDnsZoneName = 'privatelink.dfs.${environment().suffixes.storage}'
 var fileprivateDnsZoneName = 'privatelink.file.${environment().suffixes.storage}'
@@ -206,7 +206,7 @@ module m_blob_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:blobprivateDnsZoneName
     privateDnsZoneConfigsName:replace(blobprivateDnsZoneName,'.','-')
     resourceName: storageAccountName
@@ -229,7 +229,7 @@ module m_dfs_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInteg
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:dfsprivateDnsZoneName
     privateDnsZoneConfigsName:replace(dfsprivateDnsZoneName,'.','-')
     resourceName: storageAccountName
@@ -251,7 +251,7 @@ module m_file_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:fileprivateDnsZoneName
     privateDnsZoneConfigsName:replace(fileprivateDnsZoneName,'.','-')
     resourceName: storageAccountName
@@ -273,7 +273,7 @@ module m_queue_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:queueprivateDnsZoneName
     privateDnsZoneConfigsName:replace(queueprivateDnsZoneName,'.','-')
     resourceName: storageAccountName
@@ -295,7 +295,7 @@ module m_table_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:tableprivateDnsZoneName
     privateDnsZoneConfigsName:replace(tableprivateDnsZoneName,'.','-')
     resourceName: storageAccountName
