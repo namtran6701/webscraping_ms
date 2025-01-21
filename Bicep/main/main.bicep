@@ -23,7 +23,7 @@ param deploytablePE bool
 
 
 param SUBSCRIPTION_ID string
-param PrivateDNSZoneRgName string
+param rgname string
 param VnetforPrivateEndpointsRgName string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
@@ -233,7 +233,7 @@ module keyVaultModule '../keyvault/deploy.bicep' = {
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
   }
   dependsOn:[dnsModule]
 }
@@ -256,7 +256,7 @@ module dnsZones '../private_dns_zone_create/deploy.bicep' = {
   name: 'dnsZonesModule'
   params: {
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
   }
   dependsOn:[vnetModule,subnetModule]
 }
@@ -288,7 +288,7 @@ module dnsModule '../private-dns-zone-orchestrator/deploy.bicep' = {
     VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     //vnet_id: vnet_id
   }
   dependsOn:[dnsZones]
@@ -314,7 +314,7 @@ module storageAccount '../storageaccount/deploy.bicep' = {
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     deployblobPE: deployblobPE
     deploydfsPE: deploydfsPE
     deployfilePE: deployfilePE
@@ -350,7 +350,7 @@ module m_ai_search '../ai search/deploy.bicep' = {
     hostingMode: hostingMode
     semanticSearch: semanticSearch
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
@@ -399,7 +399,7 @@ module functionAppModule '../functionapp/deploy.bicep' = {
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     dockerRegistryUrl: dockerRegistryUrl
     dockerRegistryUsername: dockerRegistryUsername
   }
@@ -424,7 +424,7 @@ module cognitiveServiceModule '../openai_service/deploy.bicep' = {
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     deployments: deployments
   }
   dependsOn:[m_keyvualt_add_secret, storageContainerModule,m_ai_search]
