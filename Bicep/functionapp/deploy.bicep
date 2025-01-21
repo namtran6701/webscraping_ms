@@ -15,7 +15,6 @@ param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
 param SUBSCRIPTION_ID string
-param rgname string
 
 param dockerRegistryUrl string
 param dockerRegistryUsername string
