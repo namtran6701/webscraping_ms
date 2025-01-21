@@ -45,7 +45,7 @@ var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?res
 
 //dns zone
 @secure()
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_IDstring
 param PrivateDNSZoneRgName string
 var privateDnsZoneName = (kind == 'OpenAI')?'privatelink.openai.azure.com':'privatelink.cognitiveservices.azure.com'
 
@@ -100,7 +100,7 @@ module m_cognitiveService_private_endpoint '../private_endpoint/deploy.bicep' = 
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+    SUBSCRIPTION_ID: SUBSCRIPTION_ID
     PrivateDNSZoneRgName: PrivateDNSZoneRgName
     privateDnsZoneName:privateDnsZoneName
     privateDnsZoneConfigsName:replace(privateDnsZoneName,'.','-')
