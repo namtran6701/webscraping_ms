@@ -4,7 +4,7 @@ param VnetforPrivateEndpointsRgName string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param UseManualPrivateLinkServiceConnections string = 'False'
-param DNS_ZONE_SUBSCRIPTION_ID string
+param SUBSCRIPTION_ID string
 param PrivateDNSZoneRgName string
 param privateDnsZoneName string
 param privateDnsZoneConfigsName string
@@ -31,7 +31,7 @@ resource r_vnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
 }
 
 resource r_PrivateDNSZone 'Microsoft.Network/privateDnsZones@2020-06-01' existing = {
-  scope: resourceGroup(DNS_ZONE_SUBSCRIPTION_ID, PrivateDNSZoneRgName)
+  scope: resourceGroup(SUBSCRIPTION_ID, PrivateDNSZoneRgName)
   name: privateDnsZoneName
 }
 
