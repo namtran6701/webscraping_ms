@@ -54,7 +54,7 @@ param vnetName string
 param vnetAddressSpace string
 //param vnet_id string
 param VnetForResourcesRgName string
-param VnetForResourcesName string 
+param vnetName string 
 param FunctionAppSubnetName string = 'FunctionAppSubnet'
 param logicAppSubnetName string = 'LogicAppSubnet'
 param apiManagementSubnetName string = 'ApiManagementSubnet'
@@ -389,7 +389,7 @@ module functionAppModule '../functionapp/deploy.bicep' = {
     storageAccountName: storageAccountName
     functionApplinuxFxVersion: functionApplinuxFxVersion
     VnetForResourcesRgName: VnetForResourcesRgName
-    VnetForResourcesName: VnetForResourcesName
+    vnetName: vnetName
     FunctionAppSubnetName: FunctionAppSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     rgname: rgname
