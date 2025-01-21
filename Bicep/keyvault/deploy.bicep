@@ -55,7 +55,7 @@ var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?res
 //dns zone
 @secure()
 param SUBSCRIPTION_ID string
-param PrivateDNSZoneRgName string
+param rgname string
 var privateDnsZoneName = 'privatelink.vaultcore.azure.net'
 
 resource r_keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
@@ -116,7 +116,7 @@ module m_keyvault_private_endpoint '../private_endpoint/deploy.bicep' = if (vnet
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:privateDnsZoneName
     privateDnsZoneConfigsName:replace(privateDnsZoneName,'.','-')
     resourceName: keyVaultName
