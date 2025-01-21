@@ -1,7 +1,7 @@
 param location string
 param VnetforPrivateEndpointsSubscriptionId string = subscription().subscriptionId
 param VnetforPrivateEndpointsRgName string
-param VnetforPrivateEndpointsName string
+param vnetName string
 param PrivateEndpointSubnetName string
 param UseManualPrivateLinkServiceConnections string = 'False'
 param SUBSCRIPTION_ID string
@@ -27,7 +27,7 @@ var privateLinkServiceConnections = [
 
 resource r_vnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
   scope: resourceGroup(VnetforPrivateEndpointsSubscriptionId, VnetforPrivateEndpointsRgName)
-  name: VnetforPrivateEndpointsName
+  name: vnetName
 }
 
 resource r_PrivateDNSZone 'Microsoft.Network/privateDnsZones@2020-06-01' existing = {
