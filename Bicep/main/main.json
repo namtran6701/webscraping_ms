@@ -86,7 +86,7 @@
       "type": "bool",
       "defaultValue": true
     },
-    "DNS_ZONE_SUBSCRIPTION_ID": {
+    "SUBSCRIPTION_ID": {
       "type": "string"
     },
     "PrivateDNSZoneRgName": {
@@ -1588,8 +1588,8 @@
           "PrivateEndpointId": {
             "value": "[parameters('PrivateEndpointId')]"
           },
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -1699,7 +1699,7 @@
             "PrivateEndpointId": {
               "type": "string"
             },
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "securestring"
             },
             "PrivateDNSZoneRgName": {
@@ -1787,8 +1787,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -1845,7 +1845,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -1907,7 +1907,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -2003,8 +2003,8 @@
         },
         "mode": "Incremental",
         "parameters": {
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -2021,7 +2021,7 @@
             }
           },
           "parameters": {
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "string"
             },
             "PrivateDNSZoneRgName": {
@@ -2052,7 +2052,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "blob_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2096,7 +2096,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "dfs_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2140,7 +2140,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "file_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2184,7 +2184,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "queue_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2228,7 +2228,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "table_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2272,7 +2272,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "sql_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2316,7 +2316,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "cognitive_service_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2360,7 +2360,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "openai_service_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2404,7 +2404,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "data_factory_portal_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2448,7 +2448,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "data_factory_dataFactory_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2492,7 +2492,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "key_vault_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2536,7 +2536,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "logic_app_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2580,7 +2580,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "container_registry_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2624,7 +2624,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "ml_workspace_api_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2668,7 +2668,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "ml_workspace_notebook_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2712,7 +2712,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "search_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2756,7 +2756,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "api_management_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -2878,8 +2878,8 @@
           "VnetforPrivateEndpointsName": {
             "value": "[parameters('VnetforPrivateEndpointsName')]"
           },
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -2978,7 +2978,7 @@
             "VnetforPrivateEndpointsName": {
               "type": "string"
             },
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "string"
             },
             "PrivateDNSZoneRgName": {
@@ -3017,7 +3017,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "blob_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3076,7 +3076,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "dfs_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3135,7 +3135,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "file_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3194,7 +3194,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "queue_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3253,7 +3253,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "table_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3312,7 +3312,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "sql_private_endpoint",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3371,7 +3371,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "cognitive_service_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3430,7 +3430,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "openai_service_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3489,7 +3489,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "data_factory_portal_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3548,7 +3548,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "data_factory_dataFactory_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3607,7 +3607,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "event_hub_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3666,7 +3666,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "key_vault_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3725,7 +3725,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "websites_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3784,7 +3784,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "purview_portal_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3843,7 +3843,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "purview_account_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3902,7 +3902,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "synapse_dev_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -3961,7 +3961,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "synapse_sql_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4020,7 +4020,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "synapse_web_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4079,7 +4079,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "container_registry_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4138,7 +4138,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "ml_workspace_api_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4197,7 +4197,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "ml_workspace_notebook_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4256,7 +4256,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "databricksWorkspace_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4315,7 +4315,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "search_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4374,7 +4374,7 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
               "name": "api_management_dns_zone",
-              "subscriptionId": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]",
+              "subscriptionId": "[parameters('SUBSCRIPTION_ID')]",
               "resourceGroup": "[parameters('PrivateDNSZoneRgName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -4482,8 +4482,8 @@
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
           },
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -4629,7 +4629,7 @@
               "type": "string",
               "defaultValue": ""
             },
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "securestring"
             },
             "PrivateDNSZoneRgName": {
@@ -4813,8 +4813,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -4871,7 +4871,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -4933,7 +4933,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -4976,8 +4976,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -5034,7 +5034,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -5096,7 +5096,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -5139,8 +5139,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -5197,7 +5197,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -5259,7 +5259,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -5302,8 +5302,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -5360,7 +5360,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -5422,7 +5422,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -5465,8 +5465,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -5523,7 +5523,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -5585,7 +5585,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -5695,8 +5695,8 @@
           "semanticSearch": {
             "value": "[parameters('semanticSearch')]"
           },
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -5817,7 +5817,7 @@
             "PrivateEndpointId": {
               "type": "string"
             },
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "securestring"
             },
             "PrivateDNSZoneRgName": {
@@ -5905,8 +5905,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -5963,7 +5963,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -6025,7 +6025,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -6187,8 +6187,8 @@
           "PrivateEndpointId": {
             "value": "[parameters('PrivateEndpointId')]"
           },
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -6255,7 +6255,7 @@
             "PrivateEndpointId": {
               "type": "string"
             },
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "string"
             },
             "PrivateDNSZoneRgName": {
@@ -6377,8 +6377,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -6435,7 +6435,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -6497,7 +6497,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
@@ -6569,8 +6569,8 @@
           "PrivateEndpointId": {
             "value": "[parameters('PrivateEndpointId')]"
           },
-          "DNS_ZONE_SUBSCRIPTION_ID": {
-            "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+          "SUBSCRIPTION_ID": {
+            "value": "[parameters('SUBSCRIPTION_ID')]"
           },
           "PrivateDNSZoneRgName": {
             "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -6674,7 +6674,7 @@
             "PrivateEndpointId": {
               "type": "string"
             },
-            "DNS_ZONE_SUBSCRIPTION_ID": {
+            "SUBSCRIPTION_ID": {
               "type": "securestring"
             },
             "PrivateDNSZoneRgName": {
@@ -6761,8 +6761,8 @@
                   "UseManualPrivateLinkServiceConnections": {
                     "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
                   },
-                  "DNS_ZONE_SUBSCRIPTION_ID": {
-                    "value": "[parameters('DNS_ZONE_SUBSCRIPTION_ID')]"
+                  "SUBSCRIPTION_ID": {
+                    "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
                   "PrivateDNSZoneRgName": {
                     "value": "[parameters('PrivateDNSZoneRgName')]"
@@ -6819,7 +6819,7 @@
                       "type": "string",
                       "defaultValue": "False"
                     },
-                    "DNS_ZONE_SUBSCRIPTION_ID": {
+                    "SUBSCRIPTION_ID": {
                       "type": "string"
                     },
                     "PrivateDNSZoneRgName": {
@@ -6881,7 +6881,7 @@
                           {
                             "name": "[parameters('privateDnsZoneConfigsName')]",
                             "properties": {
-                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('DNS_ZONE_SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
+                              "privateDnsZoneId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('SUBSCRIPTION_ID'), parameters('PrivateDNSZoneRgName')), 'Microsoft.Network/privateDnsZones', parameters('privateDnsZoneName'))]"
                             }
                           }
                         ]
