@@ -19,12 +19,12 @@ param DeployAPIManagement string = 'True'
 param DeployAzureOpenAI string = 'True'
 
 param rgname string
-param VnetforPrivateEndpointsName string
+param vnetName string
 param SUBSCRIPTION_ID string
 
 resource r_vnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
   scope: resourceGroup(rgname)
-  name: VnetforPrivateEndpointsName
+  name: vnetName
 }
 
 //storage - blob
@@ -34,7 +34,7 @@ module m_blob_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake =
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: blobprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     ////vnet_id: r_vnet.id
   }
 }
@@ -46,7 +46,7 @@ module m_df_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake == 
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: dfsprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -58,7 +58,7 @@ module m_file_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspac
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: fileprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -70,7 +70,7 @@ module m_queue_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployMLWorkspa
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: queueprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -82,7 +82,7 @@ module m_table_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployDataLake 
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: tableprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -94,7 +94,7 @@ module m_sql_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureSQL ==
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: sqlPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -106,7 +106,7 @@ module m_cognitive_service_dns_zone '../private-dns-zone/deploy.bicep' = if (Dep
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: cognitiveServicePrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -118,7 +118,7 @@ module m_openai_service_dns_zone '../private-dns-zone/deploy.bicep' = if (Deploy
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: openAIPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -130,7 +130,7 @@ module m_data_factory_portal_dns_zone '../private-dns-zone/deploy.bicep' = if (D
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: adfPortalPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -142,7 +142,7 @@ module m_data_factory_dataFactory_dns_zone '../private-dns-zone/deploy.bicep' = 
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: adfPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -154,7 +154,7 @@ module m_event_hub_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployEvent
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: eventhubPrivateDnsZone
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -166,7 +166,7 @@ module m_key_vault_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployKeyVa
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: keyVaultPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -178,7 +178,7 @@ module m_websites_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployLogicA
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: WebsitesPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -190,7 +190,7 @@ module m_purview_portal_dns_zone '../private-dns-zone/deploy.bicep' = if (Deploy
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: purviewPortalprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -202,7 +202,7 @@ module m_purview_account_dns_zone '../private-dns-zone/deploy.bicep' = if (Deplo
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: purviewAccountprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -214,7 +214,7 @@ module m_synapse_dev_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySyn
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: synapseDevprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -226,7 +226,7 @@ module m_synapse_sql_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySyn
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: synapseSqlprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -238,7 +238,7 @@ module m_synapse_web_dns_zone '../private-dns-zone/deploy.bicep' = if (DeploySyn
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: synapsePrivatelinkhubprivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -250,7 +250,7 @@ module m_container_registry_dns_zone '../private-dns-zone/deploy.bicep' = if (De
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: containerRegistryPrivateDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -262,7 +262,7 @@ module m_ml_workspace_api_dns_zone '../private-dns-zone/deploy.bicep' = if (Depl
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: mlWorkspaceprivateDnsZoneName1
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -274,7 +274,7 @@ module m_ml_workspace_notebook_dns_zone '../private-dns-zone/deploy.bicep' = if 
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: mlWorkspaceprivateDnsZoneName2
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -286,7 +286,7 @@ module m_databricksWorkspace_dns_zone '../private-dns-zone/deploy.bicep' = if (D
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: databricksWorkspaceDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -297,7 +297,7 @@ module m_search_dns_zone '../private-dns-zone/deploy.bicep' = if (DeployAzureSea
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: searchDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
@@ -308,7 +308,7 @@ module m_api_management_dns_zone '../private-dns-zone/deploy.bicep' = if (Deploy
   scope: resourceGroup(SUBSCRIPTION_ID, rgname)
   params: {
     privateDnsZoneName: apiManagementDnsZoneName
-    vnetName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     //vnet_id: r_vnet.id
   }
 }
