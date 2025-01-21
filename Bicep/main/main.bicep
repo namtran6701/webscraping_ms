@@ -1,31 +1,31 @@
 targetScope = 'subscription'
-param rgname string
+param rgname string = 'Techconnect'
 //param location string = resourceGroup().location
 param location string = 'EASTUS'
 param tags object
-param aisearchname string
-param aisearchlocation string
-param sku_name string
+param aisearchname string = 'gtptchconaisearch'
+param aisearchlocation string = 'EASTUS'
+param sku_name string = 'standard'
 param disableLocalAuth bool = true
-param partitionCount int
-param replicaCount int
-param hostingMode string
+param partitionCount int = 1
+param replicaCount int = 1
+param hostingMode string = 'default'
 param semanticSearch string = 'standard'
 param aiservicename string = 'gtpgenaitchcon'
 param deployments array = []
-param appInsightsName string
+param appInsightsName string = 'gtpgenaidevgrpain'
 
-param deployblobPE bool
-param deploydfsPE bool
-param deployfilePE bool
-param deployqueuePE bool
-param deploytablePE bool
+param deployblobPE bool = true
+param deploydfsPE bool = false
+param deployfilePE bool = true
+param deployqueuePE bool = true
+param deploytablePE bool = true
 
 
 param SUBSCRIPTION_ID string
-param vnetName string
-param PrivateEndpointSubnetName string
-param PrivateEndpointId string
+param vnetName string = 'Techconnectvnet'
+param PrivateEndpointSubnetName string = 'Devsubnet'
+param PrivateEndpointId string = 'Devsubnet'
 param DeployResourcesWithPublicAccess string = 'False'
 param AllowAccessToIpRange string = 'False'
 param IpRangeCidr string = ''
@@ -37,28 +37,24 @@ param UseManualPrivateLinkServiceConnections string = 'False'
 //param privateEndpointgroupIds array
 //param apimSubnetServiceEndpoints array
 
-param appServicePlanName string
-param appserviceplan_sku string
-param appserviceplan_skuCode string
-param reserved bool
-param maximumElasticWorkerCount int
+param appServicePlanName string = 'gtpgenaidevdefnp'
+param appserviceplan_sku string = 'ElasticPremium'
+param appserviceplan_skuCode string = 'EP1'
+param reserved bool = true
+param maximumElasticWorkerCount int = 1
 param functionWorkerRuntime string = 'node'
 param functionAppName string = 'gtpgenaitcdefna'
 param hostingPlanName string = 'gtpgenaidevdefnp'
-param storageAccountName string
+param storageAccountName string = 'gtpgenaitchconstor'
 param functionApplinuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
-param dockerRegistryUrl string
-param dockerRegistryUsername string
+param dockerRegistryUrl string = 'gtpgenaicontainer.azurecr.io'
+param dockerRegistryUsername string = 'gtpgenaidevdecon'
 
-param vnetName string
 param vnetAddressSpace string
 //param vnet_id string
-param VnetForResourcesRgName string
-param vnetName string 
 param FunctionAppSubnetName string = 'FunctionAppSubnet'
-param logicAppSubnetName string = 'LogicAppSubnet'
 param apiManagementSubnetName string = 'ApiManagementSubnet'
-param azurePAASResourcesSubnetAddressSpace string
+param azurePAASResourcesSubnetAddressSpace string = '10.240.4.240/28'
 param logicAppSubnetAddressSpace string = '10.240.4.192/28'
 param functionAppSubnetAddressSpace string = '10.240.4.176/28'
 param apiManagementSubnetAddressSpace string = '10.240.4.144/28'
@@ -67,37 +63,31 @@ param apiManagementSubnetAddressSpace string = '10.240.4.144/28'
 param DeployDataLake string = 'True'
 param DeployLandingStorage string = 'True'
 param DeployKeyVault string = 'True'
-param DeployAzureSQL string = 'True'
-param DeployADF string = 'True'
 param DeploySynapse string = 'False'
 param DeployPurview string = 'False'
-param DeployLogicApp string = 'True'
 param DeployFunctionApp string = 'True'
 param DeployMLWorkspace string = 'True'
 param DeployCognitiveService string = 'True'
 param DeployEventHubNamespace string = 'False'
-param DeployADFPortalPrivateEndpoint string = 'True'
 param DeploySynapseWebPrivateEndpoint string = 'False'
 param DeployPurviewPrivateEndpoints string = 'False'
 param DeployDatabricks string = 'False'
 param DeployAzureSearch string = 'True'
 param DeployAPIManagement string = 'True'
 param DeployAzureOpenAI string = 'True'
-param sku string
+param sku string = 'standard'
 
-param keyVaultName string
-param secrets array
-param enabledForTemplateDeployment bool
-param enabledForDiskEncryption bool
-param enabledForDeployment bool
-param softDeleteRetentionInDays int
+param keyVaultName string = 'gtpgenaitchckv'
+param enabledForTemplateDeployment bool = true
+param enabledForDiskEncryption bool = true
+param enabledForDeployment bool = true
+param softDeleteRetentionInDays int = 90
 param DeployPurgeProtection string = 'False'
 param enablePurgeProtection bool = (DeployPurgeProtection == 'True') ? true : false
 
 param DeployLogAnalytics string = 'True'
 param logAnalyticsSubscriptionId string
-param logAnalyticsRG string
-param logAnalyticsName string
+param logAnalyticsName string = 'gtpgenailogtechcon'
 @description('Public Network Access for Ingestion')
 @allowed([
   'Disabled'
@@ -110,7 +100,7 @@ param publicNetworkAccessForIngestion string = 'Enabled'
   'Enabled'
 ])
 param publicNetworkAccessForQuery string = 'Enabled'
-param log_sku_name string
+param log_sku_name string = 'PerGB2018'
 param retentionInDays int = 90
 param dailyQuotaGb int = -1
 param enableDataExport bool = true
@@ -123,20 +113,17 @@ param immediatePurgeDataOn30Days bool = false
   'Standard_ZRS'
   'Premium_LRS'
 ])
-param storageAccountType string
+param storageAccountType string = 'Standard_ZRS'
 @allowed([
   'Hot'
   'Cool'
 ])
-param accessTier string
-param containerName string
-param isHnsEnabled bool
-param requireInfrastructureEncryption bool
-param softDeleteEnabled bool
-param enableDiagnostics bool
-
-//param vnet_id string
-
+param accessTier string = 'Hot'
+param containerName string = "gtpgenaistortechcont"
+param isHnsEnabled bool = false
+param requireInfrastructureEncryption bool = true
+param softDeleteEnabled bool = false
+param enableDiagnostics bool = true
 
 
 module rg '../resource-group/deploy.bicep' = {
