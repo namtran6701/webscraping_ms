@@ -5,7 +5,6 @@ param hostingPlanName string
 param storageAccountName string
 param functionApplinuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
 param VnetForResourcesRgName string
-param VnetForResourcesName string 
 param FunctionAppSubnetName string
 
 param UseManualPrivateLinkServiceConnections string = 'False'
@@ -100,7 +99,7 @@ resource functionAppName_virtualNetwork 'Microsoft.Web/sites/networkConfig@2022-
   parent: functionApp
   name: 'virtualNetwork'
   properties: {
-    subnetResourceId: resourceId(VnetForResourcesRgName,'Microsoft.Network/virtualNetworks/subnets', VnetForResourcesName, FunctionAppSubnetName)
+    subnetResourceId: resourceId(VnetForResourcesRgName,'Microsoft.Network/virtualNetworks/subnets', vnetName, FunctionAppSubnetName)
     swiftSupported: true
   }
 }
