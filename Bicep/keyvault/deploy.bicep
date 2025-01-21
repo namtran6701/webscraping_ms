@@ -55,7 +55,6 @@ var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?res
 //dns zone
 @secure()
 param SUBSCRIPTION_ID string
-param rgname string
 var privateDnsZoneName = 'privatelink.vaultcore.azure.net'
 
 resource r_keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
