@@ -23,7 +23,6 @@ param deploytablePE bool
 
 
 param SUBSCRIPTION_ID string
-param VnetforPrivateEndpointsRgName string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
@@ -227,7 +226,7 @@ module keyVaultModule '../keyvault/deploy.bicep' = {
     CreatePrivateEndpoints: CreatePrivateEndpoints
     CreatePrivateEndpointsInSameRgAsResource: CreatePrivateEndpointsInSameRgAsResource
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
@@ -284,7 +283,7 @@ module dnsModule '../private-dns-zone-orchestrator/deploy.bicep' = {
     DeployAzureSearch: DeployAzureSearch
     DeployAPIManagement: DeployAPIManagement
     DeployAzureOpenAI: DeployAzureOpenAI
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
@@ -309,7 +308,7 @@ module storageAccount '../storageaccount/deploy.bicep' = {
     softDeleteEnabled: softDeleteEnabled
     enableDiagnostics: enableDiagnostics
     DeployWithCustomNetworking: DeployWithCustomNetworking
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
@@ -350,7 +349,7 @@ module m_ai_search '../ai search/deploy.bicep' = {
     semanticSearch: semanticSearch
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
@@ -393,7 +392,7 @@ module functionAppModule '../functionapp/deploy.bicep' = {
     VnetForResourcesName: VnetForResourcesName
     FunctionAppSubnetName: FunctionAppSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
@@ -418,7 +417,7 @@ module cognitiveServiceModule '../openai_service/deploy.bicep' = {
     DeployWithCustomNetworking: DeployWithCustomNetworking
     CreatePrivateEndpoints: CreatePrivateEndpoints
     CreatePrivateEndpointsInSameRgAsResource: CreatePrivateEndpointsInSameRgAsResource
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
