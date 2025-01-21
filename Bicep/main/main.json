@@ -181,10 +181,6 @@
       "type": "string",
       "defaultValue": "10.240.4.0/23"
     },
-    "VnetForResourcesRgName": {
-      "type": "string",
-      "defaultValue": "TechconRG"
-    },
     "FunctionAppSubnetName": {
       "type": "string",
       "defaultValue": "FunctionAppSubnet"
@@ -1562,9 +1558,6 @@
           "UseManualPrivateLinkServiceConnections": {
             "value": "[parameters('UseManualPrivateLinkServiceConnections')]"
           },
-          "rgname": {
-            "value": "[parameters('rgname')]"
-          },
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
@@ -1673,9 +1666,6 @@
               "type": "string",
               "defaultValue": "False"
             },
-            "rgname": {
-              "type": "string"
-            },
             "vnetName": {
               "type": "string"
             },
@@ -1761,9 +1751,6 @@
                   "location": {
                     "value": "[parameters('location')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "vnetName": {
                     "value": "[parameters('vnetName')]"
                   },
@@ -1817,9 +1804,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
@@ -2858,9 +2842,6 @@
           "DeployAzureOpenAI": {
             "value": "[parameters('DeployAzureOpenAI')]"
           },
-          "rgname": {
-            "value": "[parameters('rgname')]"
-          },
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
@@ -2957,9 +2938,6 @@
             "DeployAzureOpenAI": {
               "type": "string",
               "defaultValue": "True"
-            },
-            "rgname": {
-              "type": "string"
             },
             "vnetName": {
               "type": "string"
@@ -4459,9 +4437,6 @@
           "DeployWithCustomNetworking": {
             "value": "[parameters('DeployWithCustomNetworking')]"
           },
-          "rgname": {
-            "value": "[parameters('rgname')]"
-          },
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
@@ -4617,9 +4592,6 @@
             },
             "SUBSCRIPTION_ID": {
               "type": "securestring"
-            },
-            "rgname": {
-              "type": "string"
             },
             "deployblobPE": {
               "type": "bool"
@@ -4787,9 +4759,6 @@
                   "location": {
                     "value": "[parameters('location')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "vnetName": {
                     "value": "[parameters('vnetName')]"
                   },
@@ -4843,9 +4812,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
@@ -4950,9 +4916,6 @@
                   "location": {
                     "value": "[parameters('location')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "vnetName": {
                     "value": "[parameters('vnetName')]"
                   },
@@ -5021,9 +4984,6 @@
                       "defaultValue": "False"
                     },
                     "SUBSCRIPTION_ID": {
-                      "type": "string"
-                    },
-                    "rgname": {
                       "type": "string"
                     },
                     "privateDnsZoneName": {
@@ -5113,9 +5073,6 @@
                   "location": {
                     "value": "[parameters('location')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "vnetName": {
                     "value": "[parameters('vnetName')]"
                   },
@@ -5169,9 +5126,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
@@ -5276,9 +5230,6 @@
                   "location": {
                     "value": "[parameters('location')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "vnetName": {
                     "value": "[parameters('vnetName')]"
                   },
@@ -5332,9 +5283,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
@@ -5454,9 +5402,6 @@
                   "SUBSCRIPTION_ID": {
                     "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "privateDnsZoneName": {
                     "value": "[variables('tableprivateDnsZoneName')]"
                   },
@@ -5495,9 +5440,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
@@ -5687,9 +5629,6 @@
           "rgname": {
             "value": "[parameters('rgname')]"
           },
-          "rgname": {
-            "value": "[parameters('rgname')]"
-          },
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
@@ -5806,9 +5745,6 @@
             "SUBSCRIPTION_ID": {
               "type": "securestring"
             },
-            "rgname": {
-              "type": "string"
-            },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
               "defaultValue": "False",
@@ -5894,9 +5830,6 @@
                   "SUBSCRIPTION_ID": {
                     "value": "[parameters('SUBSCRIPTION_ID')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "privateDnsZoneName": {
                     "value": "[variables('privateDnsZoneName')]"
                   },
@@ -5935,9 +5868,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
@@ -6149,9 +6079,6 @@
           "functionApplinuxFxVersion": {
             "value": "[parameters('functionApplinuxFxVersion')]"
           },
-          "VnetForResourcesRgName": {
-            "value": "[parameters('VnetForResourcesRgName')]"
-          },
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
@@ -6175,9 +6102,6 @@
           },
           "SUBSCRIPTION_ID": {
             "value": "[parameters('SUBSCRIPTION_ID')]"
-          },
-          "rgname": {
-            "value": "[parameters('rgname')]"
           },
           "dockerRegistryUrl": {
             "value": "[parameters('dockerRegistryUrl')]"
@@ -6216,9 +6140,6 @@
               "type": "string",
               "defaultValue": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
             },
-            "VnetForResourcesRgName": {
-              "type": "string"
-            },
             "vnetName": {
               "type": "string"
             },
@@ -6242,9 +6163,6 @@
               "type": "string"
             },
             "SUBSCRIPTION_ID": {
-              "type": "string"
-            },
-            "rgname": {
               "type": "string"
             },
             "dockerRegistryUrl": {
@@ -6330,7 +6248,7 @@
               "apiVersion": "2022-03-01",
               "name": "[format('{0}/{1}', parameters('functionAppName'), 'virtualNetwork')]",
               "properties": {
-                "subnetResourceId": "[resourceId(parameters('VnetForResourcesRgName'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('FunctionAppSubnetName'))]",
+                "subnetResourceId": "[resourceId(parameters('rgname'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('FunctionAppSubnetName'))]",
                 "swiftSupported": true
               },
               "dependsOn": [
@@ -6365,9 +6283,6 @@
                   },
                   "SUBSCRIPTION_ID": {
                     "value": "[parameters('SUBSCRIPTION_ID')]"
-                  },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
                   },
                   "privateDnsZoneName": {
                     "value": "[variables('privateDnsZoneName')]"
@@ -6422,9 +6337,6 @@
                       "defaultValue": "False"
                     },
                     "SUBSCRIPTION_ID": {
-                      "type": "string"
-                    },
-                    "rgname": {
                       "type": "string"
                     },
                     "privateDnsZoneName": {
@@ -6543,9 +6455,6 @@
           "CreatePrivateEndpointsInSameRgAsResource": {
             "value": "[parameters('CreatePrivateEndpointsInSameRgAsResource')]"
           },
-          "rgname": {
-            "value": "[parameters('rgname')]"
-          },
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
@@ -6648,9 +6557,6 @@
               "type": "string",
               "defaultValue": "False"
             },
-            "rgname": {
-              "type": "string"
-            },
             "vnetName": {
               "type": "string"
             },
@@ -6735,9 +6641,6 @@
                   "location": {
                     "value": "[parameters('location')]"
                   },
-                  "rgname": {
-                    "value": "[parameters('rgname')]"
-                  },
                   "vnetName": {
                     "value": "[parameters('vnetName')]"
                   },
@@ -6791,9 +6694,6 @@
                     "VnetforPrivateEndpointsSubscriptionId": {
                       "type": "string",
                       "defaultValue": "[subscription().subscriptionId]"
-                    },
-                    "rgname": {
-                      "type": "string"
                     },
                     "vnetName": {
                       "type": "string"
