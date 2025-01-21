@@ -18,13 +18,12 @@ param DeployAzureSearch string = 'True'
 param DeployAPIManagement string = 'True'
 param DeployAzureOpenAI string = 'True'
 
-param VnetforPrivateEndpointsRgName string
+param rgname string
 param VnetforPrivateEndpointsName string
 param SUBSCRIPTION_ID string
-param rgname string
 
 resource r_vnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
-  scope: resourceGroup(VnetforPrivateEndpointsRgName)
+  scope: resourceGroup(rgname)
   name: VnetforPrivateEndpointsName
 }
 
