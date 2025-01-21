@@ -43,13 +43,13 @@ param DeployWithCustomNetworking string = 'True'
 param CreatePrivateEndpoints string = 'True'
 param CreatePrivateEndpointsInSameRgAsResource string = 'False'
 param UseManualPrivateLinkServiceConnections string = 'False'
-param VnetforPrivateEndpointsRgName string
+param rgname string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
 var vnetIntegration = (DeployWithCustomNetworking == 'True' && CreatePrivateEndpoints == 'True')?true:false
-var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?resourceGroup().name:VnetforPrivateEndpointsRgName
+var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?resourceGroup().name:rgname
 
 @description('Public Networking Access')
 param DeployResourcesWithPublicAccess string = 'False'
@@ -201,7 +201,7 @@ module m_blob_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
   scope: resourceGroup(privateEndpointRg)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
@@ -224,7 +224,7 @@ module m_dfs_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInteg
   scope: resourceGroup(privateEndpointRg)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
@@ -246,7 +246,7 @@ module m_file_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
   scope: resourceGroup(privateEndpointRg)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
@@ -268,7 +268,7 @@ module m_queue_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
   scope: resourceGroup(privateEndpointRg)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
@@ -290,7 +290,7 @@ module m_table_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
   scope: resourceGroup(privateEndpointRg)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
