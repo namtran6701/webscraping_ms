@@ -327,10 +327,6 @@
     "logAnalyticsSubscriptionId": {
       "type": "string"
     },
-    "logAnalyticsRG": {
-      "type": "string",
-      "defaultValue": "TechconRG"
-    },
     "logAnalyticsName": {
       "type": "string",
       "defaultValue": "gtpgenailogtechcon"
@@ -1522,9 +1518,6 @@
           "logAnalyticsSubscriptionId": {
             "value": "[parameters('logAnalyticsSubscriptionId')]"
           },
-          "logAnalyticsRG": {
-            "value": "[parameters('logAnalyticsRG')]"
-          },
           "logAnalyticsName": {
             "value": "[parameters('logAnalyticsName')]"
           },
@@ -1611,9 +1604,6 @@
               "type": "string"
             },
             "logAnalyticsSubscriptionId": {
-              "type": "string"
-            },
-            "logAnalyticsRG": {
               "type": "string"
             },
             "logAnalyticsName": {
@@ -1724,7 +1714,7 @@
               "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('keyVaultName'))]",
               "name": "kv-diagnostic-loganalytics",
               "properties": {
-                "workspaceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('logAnalyticsSubscriptionId'), parameters('logAnalyticsRG')), 'Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]",
+                "workspaceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('logAnalyticsSubscriptionId'), parameters('rgname')), 'Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]",
                 "logs": [
                   {
                     "category": "AuditEvent",
@@ -4539,7 +4529,7 @@
               "type": "string",
               "defaultValue": ""
             },
-            "logAnalyticsRG": {
+            "rgname": {
               "type": "string",
               "defaultValue": ""
             },
@@ -4712,7 +4702,7 @@
               "scope": "[format('Microsoft.Storage/storageAccounts/{0}/blobServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[format('{0}-blob-loganalytics', parameters('storageAccountName'))]",
               "properties": {
-                "workspaceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('logAnalyticsSubscriptionId'), parameters('logAnalyticsRG')), 'Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]",
+                "workspaceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('logAnalyticsSubscriptionId'), parameters('rgname')), 'Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]",
                 "logs": [
                   {
                     "category": "StorageRead",
@@ -6818,8 +6808,8 @@
           "logAnalyticsName": {
             "value": "[parameters('logAnalyticsName')]"
           },
-          "logAnalyticsRG": {
-            "value": "[parameters('logAnalyticsRG')]"
+          "rgname": {
+            "value": "[parameters('rgname')]"
           },
           "publicNetworkAccessForIngestion": {
             "value": "[parameters('publicNetworkAccessForIngestion')]"
@@ -6861,7 +6851,7 @@
             "logAnalyticsName": {
               "type": "string"
             },
-            "logAnalyticsRG": {
+            "rgname": {
               "type": "string"
             },
             "publicNetworkAccessForIngestion": {
@@ -6895,7 +6885,7 @@
               "properties": {
                 "Application_Type": "web",
                 "RetentionInDays": "[parameters('RetentionInDays')]",
-                "WorkspaceResourceId": "[if(equals(parameters('DeployLogAnalytics'), 'True'), extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('logAnalyticsSubscriptionId'), parameters('logAnalyticsRG')), 'Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName')), null())]",
+                "WorkspaceResourceId": "[if(equals(parameters('DeployLogAnalytics'), 'True'), extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', parameters('logAnalyticsSubscriptionId'), parameters('rgname')), 'Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName')), null())]",
                 "IngestionMode": "[if(equals(parameters('DeployLogAnalytics'), 'True'), 'LogAnalytics', 'ApplicationInsights')]",
                 "publicNetworkAccessForIngestion": "[variables('publicNetworkAccessForIngestion_variable')]",
                 "publicNetworkAccessForQuery": "[variables('publicNetworkAccessForQuery_variable')]"
