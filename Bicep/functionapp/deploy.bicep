@@ -15,7 +15,7 @@ param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
 param SUBSCRIPTION_ID string
-param PrivateDNSZoneRgName string
+param rgname string
 
 param dockerRegistryUrl string
 param dockerRegistryUsername string
@@ -117,7 +117,7 @@ module m_functionapp_private_endpoint '../private_endpoint/deploy.bicep' = {
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
+    rgname: rgname
     privateDnsZoneName:privateDnsZoneName
     privateDnsZoneConfigsName:replace(privateDnsZoneName,'.','-')
     resourceName: functionAppName
