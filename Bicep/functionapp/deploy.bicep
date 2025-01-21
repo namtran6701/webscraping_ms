@@ -9,7 +9,7 @@ param VnetForResourcesName string
 param FunctionAppSubnetName string
 
 param UseManualPrivateLinkServiceConnections string = 'False'
-param VnetforPrivateEndpointsRgName string
+param rgname string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
@@ -109,10 +109,10 @@ resource functionAppName_virtualNetwork 'Microsoft.Web/sites/networkConfig@2022-
 var privateDnsZoneName = 'privatelink.azurewebsites.net'
 module m_functionapp_private_endpoint '../private_endpoint/deploy.bicep' = {
   name: 'functionapp_private_endpoint'
-  scope: resourceGroup(VnetforPrivateEndpointsRgName)
+  scope: resourceGroup(rgname)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
