@@ -43,7 +43,7 @@ param DeployWithCustomNetworking string = 'True'
 param CreatePrivateEndpoints string = 'True'
 param CreatePrivateEndpointsInSameRgAsResource string = 'False'
 param UseManualPrivateLinkServiceConnections string = 'False'
-param VnetforPrivateEndpointsName string
+param vnetName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
@@ -201,7 +201,7 @@ module m_blob_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
@@ -224,7 +224,7 @@ module m_dfs_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInteg
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
@@ -246,7 +246,7 @@ module m_file_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInte
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
@@ -268,7 +268,7 @@ module m_queue_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
@@ -290,7 +290,7 @@ module m_table_private_endpoint '../private_endpoint/deploy.bicep' = if (vnetInt
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
