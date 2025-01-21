@@ -10,7 +10,7 @@ param FunctionAppSubnetName string
 
 param UseManualPrivateLinkServiceConnections string = 'False'
 param rgname string
-param VnetforPrivateEndpointsName string
+param vnetName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
@@ -112,7 +112,7 @@ module m_functionapp_private_endpoint '../private_endpoint/deploy.bicep' = {
   params: {
     location:location
     rgname: rgname
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+    vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
