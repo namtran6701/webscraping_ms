@@ -18,9 +18,6 @@
     "SUBSCRIPTION_ID": {
     "value": "250f62f2-46bc-4a3d-b362-d04ec87c9285"
     },
-    "PrivateDNSZoneRgName": {
-    "value": "Techconnect"
-    },
     "VnetforPrivateEndpointsRgName": {
     "value": "Techconnect"
     },
