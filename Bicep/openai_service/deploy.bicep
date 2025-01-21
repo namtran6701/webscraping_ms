@@ -35,13 +35,13 @@ param DeployWithCustomNetworking string = 'True'
 param CreatePrivateEndpoints string = 'True'
 param CreatePrivateEndpointsInSameRgAsResource string = 'False'
 param UseManualPrivateLinkServiceConnections string = 'False'
-param VnetforPrivateEndpointsRgName string
+param rgname string
 param VnetforPrivateEndpointsName string
 param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
 var vnetIntegration = (DeployWithCustomNetworking == 'True' && CreatePrivateEndpoints == 'True')?true:false
-var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?resourceGroup().name:VnetforPrivateEndpointsRgName
+var privateEndpointRg = (CreatePrivateEndpointsInSameRgAsResource == 'True')?resourceGroup().name:rgname
 
 //dns zone
 @secure()
@@ -96,7 +96,7 @@ module m_cognitiveService_private_endpoint '../private_endpoint/deploy.bicep' = 
   scope: resourceGroup(privateEndpointRg)
   params: {
     location:location
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+    rgname: rgname
     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
