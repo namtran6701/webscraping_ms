@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.32.4.45862",
-      "templateHash": "5468440092290603812"
+      "templateHash": "15085315290622440569"
     }
   },
   "parameters": {
@@ -15,7 +15,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "EASTUS"
+      "defaultValue": "canadacentral"
     },
     "tags": {
       "type": "object",
@@ -30,7 +30,7 @@
     },
     "aisearchlocation": {
       "type": "string",
-      "defaultValue": "EASTUS"
+      "defaultValue": "canadacentral"
     },
     "sku_name": {
       "type": "string",
@@ -350,7 +350,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "13217484020288192637"
+              "templateHash": "14185617108499189944"
             }
           },
           "parameters": {
@@ -366,7 +366,7 @@
               "type": "Microsoft.Resources/resourceGroups",
               "apiVersion": "2021-04-01",
               "name": "[parameters('name')]",
-              "location": "EASTUS",
+              "location": "canadacentral",
               "tags": "[parameters('tags')]"
             }
           ],
@@ -448,7 +448,10 @@
             }
           ]
         }
-      }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/deployments', 'rg-deployment')]"
+      ]
     },
     {
       "type": "Microsoft.Resources/deployments",

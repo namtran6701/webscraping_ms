@@ -1,13 +1,13 @@
 targetScope = 'subscription'
 param rgname string = 'Techconnect'
 //param location string = resourceGroup().location
-param location string = 'EASTUS'
+param location string = 'canadacentral'
 param tags object = {
   Environment: 'dev'
   Department: 'techcon'
 }
 param aisearchname string = 'gtptchconaisearch'
-param aisearchlocation string = 'EASTUS'
+param aisearchlocation string = 'canadacentral'
 param sku_name string = 'standard'
 param disableLocalAuth bool = true
 param partitionCount int = 1
@@ -142,13 +142,14 @@ module vnetModule '../vnet/deploy.bicep' = {
     vnetName: vnetName
     vnetAddressSpace: vnetAddressSpace
   }
+  dependsOn:[rg]
 }
 
 
 module subnetModule '../subnet/deploy.bicep' = {
   scope: resourceGroup(rgname)
   name: 'subnetDeployment'
-  params: {
+    params: {
     location: location
     vnetName: vnetName
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
