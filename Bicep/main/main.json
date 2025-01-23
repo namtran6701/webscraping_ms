@@ -1290,6 +1290,7 @@
             },
             "publicNetworkAccessForIngestion": {
               "type": "string",
+              "defaultValue": "Enabled",
               "allowedValues": [
                 "Disabled",
                 "Enabled"
@@ -1297,6 +1298,7 @@
             },
             "publicNetworkAccessForQuery": {
               "type": "string",
+              "defaultValue": "Enabled",
               "allowedValues": [
                 "Disabled",
                 "Enabled"
@@ -4038,7 +4040,7 @@
             },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
-              "defaultValue": "False",
+              "defaultValue": "True",
               "metadata": {
                 "description": "Public Networking Access"
               }
@@ -5984,7 +5986,7 @@
             },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
-              "defaultValue": "False",
+              "defaultValue": "True",
               "metadata": {
                 "description": "Public Networking Access"
               }
@@ -6330,7 +6332,7 @@
             },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
-              "defaultValue": "False",
+              "defaultValue": "True",
               "metadata": {
                 "description": "Public Networking Access"
               }
