@@ -129,7 +129,7 @@
     },
     "functionAppName": {
       "type": "string",
-      "defaultValue": "gtpgenaitcdefna"
+      "defaultValue": "gtpgenaitcdefnans"
     },
     "hostingPlanName": {
       "type": "string",
@@ -217,7 +217,7 @@
     },
     "keyVaultName": {
       "type": "string",
-      "defaultValue": "gtpgenaitchckv"
+      "defaultValue": "gtpgenaitchckvns"
     },
     "enabledForTemplateDeployment": {
       "type": "bool",
