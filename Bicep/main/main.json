@@ -4212,10 +4212,6 @@
               "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
               ],
-              "properties": {
-                "mode": "Complete", 
-                "publicAccess": "container"
-              }
             },
             {
               "condition": "[and(variables('vnetIntegration'), parameters('deployblobPE'))]",
@@ -5057,10 +5053,6 @@
       "dependsOn": [
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'storageAccountModule')]"
       ],
-      "properties": {
-        "mode": "Complete",
-        "publicAccess": "container"
-      }
     },
     {
       "type": "Microsoft.Resources/deployments",
