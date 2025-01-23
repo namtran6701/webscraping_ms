@@ -4038,7 +4038,7 @@
             },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
-              "defaultValue": "False",
+              "defaultValue": "True",
               "metadata": {
                 "description": "Public Networking Access"
               }
@@ -5984,7 +5984,7 @@
             },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
-              "defaultValue": "False",
+              "defaultValue": "True",
               "metadata": {
                 "description": "Public Networking Access"
               }
@@ -6330,7 +6330,7 @@
             },
             "DeployResourcesWithPublicAccess": {
               "type": "string",
-              "defaultValue": "False",
+              "defaultValue": "True",
               "metadata": {
                 "description": "Public Networking Access"
               }
