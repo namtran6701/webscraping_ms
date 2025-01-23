@@ -5256,11 +5256,6 @@
                 "replicaCount": "[parameters('replicaCount')]",
                 "publicNetworkAccess": "[variables('publicNetworkAccess')]",
                 "disableLocalAuth": "[parameters('disableLocalAuth')]",
-                "authOptions": {
-                  "aadOrApiKey": {
-                    "aadAuthFailureMode": "http401WithBearerChallenge"
-                  }
-                }
               }
             },
             {
