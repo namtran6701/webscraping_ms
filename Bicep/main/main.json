@@ -4213,7 +4213,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
               ],
               "properties": {
-                "mode": "Incremental", 
+                "mode": "Complete", 
                 "publicAccess": "container"
               }
             },
@@ -5058,7 +5058,7 @@
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'storageAccountModule')]"
       ],
       "properties": {
-        "mode": "Incremental",
+        "mode": "Complete",
         "publicAccess": "container"
       }
     },
