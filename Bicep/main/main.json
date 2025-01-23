@@ -3989,7 +3989,7 @@
             },
             "allowBlobPublicAccess": {
               "type": "bool",
-              "defaultValue": false
+              "defaultValue": true
             },
             "enableDiagnostics": {
               "type": "bool",
@@ -4211,7 +4211,10 @@
               "name": "[format('{0}/default/{1}', parameters('storageAccountName'), parameters('DataLakeContainerNames')[copyIndex()])]",
               "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-              ]
+              ],
+              "properties": {
+                "publicAccess": "container"
+              }
             },
             {
               "condition": "[and(variables('vnetIntegration'), parameters('deployblobPE'))]",
@@ -5052,7 +5055,10 @@
       },
       "dependsOn": [
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'storageAccountModule')]"
-      ]
+      ],
+      "properties": {
+        "publicAccess": "container"
+      }
     },
     {
       "type": "Microsoft.Resources/deployments",
