@@ -5003,6 +5003,9 @@
           ]
         }
       },
+      "identity": {
+        "type": "SystemAssigned"
+        },
       "dependsOn": [
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'dns-deployment')]"
       ]
