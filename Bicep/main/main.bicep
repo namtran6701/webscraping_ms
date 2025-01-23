@@ -45,7 +45,7 @@ param appserviceplan_skuCode string = 'EP1'
 param reserved bool = true
 param maximumElasticWorkerCount int = 1
 param functionWorkerRuntime string = 'node'
-param functionAppName string = 'gtpgenaitcdefna'
+param functionAppName string = 'gtpgenaitcdefnans'
 param hostingPlanName string = 'gtpgenaidevdefnp'
 param storageAccountName string = 'gtpgenaitchconstor'
 param functionApplinuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
@@ -78,7 +78,7 @@ param DeployAPIManagement string = 'True'
 param DeployAzureOpenAI string = 'True'
 param sku string = 'standard'
 
-param keyVaultName string = 'gtpgenaitchckv'
+param keyVaultName string = 'gtpgenaitchckvns'
 param enabledForTemplateDeployment bool = true
 param enabledForDiskEncryption bool = true
 param enabledForDeployment bool = true
@@ -275,6 +275,7 @@ module storageAccount '../storageaccount/deploy.bicep' = {
     enableDiagnostics: enableDiagnostics
     DeployWithCustomNetworking: DeployWithCustomNetworking
     vnetName: vnetName
+    allowBlobPublicAccess: true
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
     rgname: rgname
@@ -294,6 +295,7 @@ module storageContainerModule '../storage_account_container/deploy.bicep' = {
   params: {
     storageAccountName: storageAccountName
     containerName: containerName
+    publicAccess: 'Container'
   }
   dependsOn:[storageAccount]
 }
