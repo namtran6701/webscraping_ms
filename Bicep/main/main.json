@@ -15,7 +15,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "canadacentral"
+      "defaultValue": "eastus2"
     },
     "tags": {
       "type": "object",
@@ -30,7 +30,7 @@
     },
     "aisearchlocation": {
       "type": "string",
-      "defaultValue": "canadacentral"
+      "defaultValue": "eastus2"
     },
     "sku_name": {
       "type": "string",
@@ -366,7 +366,7 @@
               "type": "Microsoft.Resources/resourceGroups",
               "apiVersion": "2021-04-01",
               "name": "[parameters('name')]",
-              "location": "canadacentral",
+              "location": "eastus2",
               "tags": "[parameters('tags')]"
             }
           ],
