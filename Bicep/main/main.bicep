@@ -48,9 +48,7 @@ param functionWorkerRuntime string = 'node'
 param functionAppName string = 'gtpgenaitcdefnans'
 param hostingPlanName string = 'gtpgenaidevdefnp'
 param storageAccountName string = 'gtpgenaitchconstor'
-param functionApplinuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
-param dockerRegistryUrl string = 'gtpgenaicontainer.azurecr.io'
-param dockerRegistryUsername string = 'gtpgenaidevdecon'
+param functionApplinuxFxVersion string = 'python|3.11'
 
 param vnetAddressSpace string = '10.240.4.0/23'
 //param vnet_id string
@@ -361,8 +359,6 @@ module functionAppModule '../functionapp/deploy.bicep' = {
     PrivateEndpointSubnetName: PrivateEndpointSubnetName
     PrivateEndpointId: PrivateEndpointId
     SUBSCRIPTION_ID: SUBSCRIPTION_ID
-    dockerRegistryUrl: dockerRegistryUrl
-    dockerRegistryUsername: dockerRegistryUsername
   }
   dependsOn:[storageContainerModule,m_appServicePlan]
 
