@@ -141,15 +141,7 @@
     },
     "functionApplinuxFxVersion": {
       "type": "string",
-      "defaultValue": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
-    },
-    "dockerRegistryUrl": {
-      "type": "string",
-      "defaultValue": "gtpgenaicontainer.azurecr.io"
-    },
-    "dockerRegistryUsername": {
-      "type": "string",
-      "defaultValue": "gtpgenaidevdecon"
+      "defaultValue": "python|3.11"
     },
     "vnetAddressSpace": {
       "type": "string",
@@ -5564,12 +5556,6 @@
           },
           "SUBSCRIPTION_ID": {
             "value": "[parameters('SUBSCRIPTION_ID')]"
-          },
-          "dockerRegistryUrl": {
-            "value": "[parameters('dockerRegistryUrl')]"
-          },
-          "dockerRegistryUsername": {
-            "value": "[parameters('dockerRegistryUsername')]"
           }
         },
         "template": {
@@ -5600,7 +5586,7 @@
             },
             "functionApplinuxFxVersion": {
               "type": "string",
-              "defaultValue": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
+              "defaultValue": "python|3.11"
             },
             "VnetForResourcesRgName": {
               "type": "string"
@@ -5625,12 +5611,6 @@
               "type": "string"
             },
             "SUBSCRIPTION_ID": {
-              "type": "string"
-            },
-            "dockerRegistryUrl": {
-              "type": "string"
-            },
-            "dockerRegistryUsername": {
               "type": "string"
             }
           },
@@ -5672,14 +5652,6 @@
                     {
                       "name": "FUNCTIONS_EXTENSION_VERSION",
                       "value": "~4"
-                    },
-                    {
-                      "name": "DOCKER_REGISTRY_SERVER_URL",
-                      "value": "[parameters('dockerRegistryUrl')]"
-                    },
-                    {
-                      "name": "DOCKER_REGISTRY_SERVER_USERNAME",
-                      "value": "[parameters('dockerRegistryUsername')]"
                     },
                     {
                       "name": "FUNCTIONS_WORKER_RUNTIME",
