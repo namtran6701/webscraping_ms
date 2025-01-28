@@ -3,7 +3,7 @@ param functionWorkerRuntime string
 param functionAppName string
 param hostingPlanName string
 param storageAccountName string
-param functionApplinuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/staticsite:latest'
+param functionApplinuxFxVersion string = 'python|3.11'
 param VnetForResourcesRgName string
 param FunctionAppSubnetName string
 
@@ -14,9 +14,6 @@ param PrivateEndpointSubnetName string
 param PrivateEndpointId string
 
 param SUBSCRIPTION_ID string
-
-param dockerRegistryUrl string
-param dockerRegistryUsername string
 
 var functionContentShareName = toLower(functionAppName)
 
