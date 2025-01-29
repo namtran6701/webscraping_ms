@@ -141,7 +141,7 @@
     },
     "functionApplinuxFxVersion": {
       "type": "string",
-      "defaultValue": "python|3.11"
+      "defaultValue": "python|3.12.8"
     },
     "vnetAddressSpace": {
       "type": "string",
@@ -5586,7 +5586,7 @@
             },
             "functionApplinuxFxVersion": {
               "type": "string",
-              "defaultValue": "python|3.11"
+              "defaultValue": "python|3.12.8"
             },
             "VnetForResourcesRgName": {
               "type": "string"
