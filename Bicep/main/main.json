@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.32.4.45862",
-      "templateHash": "15085315290622440569"
+      "templateHash": "2677329851077144753"
     }
   },
   "parameters": {
@@ -62,7 +62,9 @@
     },
     "deployments": {
       "type": "array",
-      "defaultValue": []
+      "defaultValue": [
+        "text-embedding-ada-002"
+      ]
     },
     "appInsightsName": {
       "type": "string",
@@ -342,7 +344,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "14185617108499189944"
+              "templateHash": "13217484020288192637"
             }
           },
           "parameters": {
@@ -3912,6 +3914,9 @@
           "vnetName": {
             "value": "[parameters('vnetName')]"
           },
+          "allowBlobPublicAccess": {
+            "value": true
+          },
           "PrivateEndpointSubnetName": {
             "value": "[parameters('PrivateEndpointSubnetName')]"
           },
@@ -3932,7 +3937,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "1398828219534300979"
+              "templateHash": "11906425624598333140"
             }
           },
           "parameters": {
@@ -4995,7 +5000,13 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
               ]
             }
-          ]
+          ],
+          "outputs": {
+            "storageAccountId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            }
+          }
         }
       },
       "dependsOn": [
@@ -5127,7 +5138,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "17463293424327738673"
+              "templateHash": "1880454893331901412"
             }
           },
           "parameters": {
@@ -5413,7 +5424,13 @@
                 "[resourceId('Microsoft.Search/searchServices', parameters('aisearchname'))]"
               ]
             }
-          ]
+          ],
+          "outputs": {
+            "aiSearchIdentity": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.Search/searchServices', parameters('aisearchname')), '2023-11-01', 'full').identity.principalId]"
+            }
+          }
         }
       },
       "dependsOn": [
@@ -5565,7 +5582,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "17227754957334026647"
+              "templateHash": "9724209805680058263"
             }
           },
           "parameters": {
@@ -5846,7 +5863,13 @@
                 "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]"
               ]
             }
-          ]
+          ],
+          "outputs": {
+            "fapidentity": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.Web/sites', parameters('functionAppName')), '2021-03-01', 'full').identity.principalId]"
+            }
+          }
         }
       },
       "dependsOn": [
@@ -5915,7 +5938,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "14973549920629560181"
+              "templateHash": "407440420715708281"
             }
           },
           "parameters": {
@@ -6217,7 +6240,13 @@
                 "[resourceId('Microsoft.CognitiveServices/accounts', parameters('cognitiveServiceName'))]"
               ]
             }
-          ]
+          ],
+          "outputs": {
+            "openaiIdentity": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.CognitiveServices/accounts', parameters('cognitiveServiceName')), '2022-10-01', 'full').identity.principalId]"
+            }
+          }
         }
       },
       "dependsOn": [
@@ -6338,6 +6367,129 @@
         }
       },
       "dependsOn": [
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'subnetDeployment')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'vnetDeployment')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "roleforaisearch",
+      "resourceGroup": "[parameters('rgname')]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "aiSearchprincipalId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'ai_search_deployment'), '2022-09-01').outputs.aiSearchIdentity.value]"
+          },
+          "storageAccountname": {
+            "value": "[parameters('storageAccountName')]"
+          },
+          "cognitiveServiceName": {
+            "value": "[parameters('aiservicename')]"
+          },
+          "openaiprincipalId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'cognitiveServiceDeployment'), '2022-09-01').outputs.openaiIdentity.value]"
+          },
+          "aisearchname": {
+            "value": "[parameters('aisearchname')]"
+          },
+          "fapprincipalID": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'deployFunctionApp'), '2022-09-01').outputs.fapidentity.value]"
+          },
+          "functionAppName": {
+            "value": "[parameters('functionAppName')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.32.4.45862",
+              "templateHash": "10035841937924858908"
+            }
+          },
+          "parameters": {
+            "storageAccountname": {
+              "type": "string"
+            },
+            "aiSearchprincipalId": {
+              "type": "string"
+            },
+            "cognitiveServiceName": {
+              "type": "string"
+            },
+            "openaiprincipalId": {
+              "type": "string"
+            },
+            "aisearchname": {
+              "type": "string"
+            },
+            "fapprincipalID": {
+              "type": "string"
+            },
+            "functionAppName": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2020-10-01-preview",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', parameters('storageAccountname'))]",
+              "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountname')), parameters('aiSearchprincipalId'), 'Storage Blob Data Contributor')]",
+              "properties": {
+                "principalId": "[parameters('aiSearchprincipalId')]",
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
+                "principalType": "ServicePrincipal"
+              }
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2020-10-01-preview",
+              "scope": "[format('Microsoft.Web/sites/{0}', parameters('functionAppName'))]",
+              "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountname')), parameters('fapprincipalID'), 'Storage Blob Data Contributor')]",
+              "properties": {
+                "principalId": "[parameters('fapprincipalID')]",
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
+                "principalType": "ServicePrincipal"
+              }
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2020-10-01-preview",
+              "scope": "[format('Microsoft.CognitiveServices/accounts/{0}', parameters('cognitiveServiceName'))]",
+              "name": "[guid(resourceId('Microsoft.CognitiveServices/accounts', parameters('cognitiveServiceName')), parameters('aiSearchprincipalId'), 'Cognitive Services OpenAI Contributor role')]",
+              "properties": {
+                "principalId": "[parameters('aiSearchprincipalId')]",
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'a001fd3d-188f-4b5d-821b-7da978bf7442')]",
+                "principalType": "ServicePrincipal"
+              }
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2020-10-01-preview",
+              "scope": "[format('Microsoft.Search/searchServices/{0}', parameters('aisearchname'))]",
+              "name": "[guid(resourceId('Microsoft.Search/searchServices', parameters('aisearchname')), parameters('openaiprincipalId'), 'Search Index Data Reader')]",
+              "properties": {
+                "principalId": "[parameters('openaiprincipalId')]",
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '1407120a-92aa-4202-b7e9-c0e197c71c8f')]",
+                "principalType": "ServicePrincipal"
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'cognitiveServiceDeployment')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'deployFunctionApp')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'ai_search_deployment')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'storageContainerDeployment')]",
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'subnetDeployment')]",
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'vnetDeployment')]"
       ]
