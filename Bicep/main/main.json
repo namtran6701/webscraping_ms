@@ -125,7 +125,7 @@
     },
     "functionWorkerRuntime": {
       "type": "string",
-      "defaultValue": "node"
+      "defaultValue": "python"
     },
     "functionAppName": {
       "type": "string",
@@ -5671,7 +5671,8 @@
                   "numberOfWorkers": 1,
                   "acrUseManagedIdentityCreds": true
                 },
-                "httpsOnly": true
+                "httpsOnly": true,
+                "publicNetworkAccess": "Enabled"
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', split(format('{0}/default/{1}', parameters('storageAccountName'), variables('functionContentShareName')), '/')[0], split(format('{0}/default/{1}', parameters('storageAccountName'), variables('functionContentShareName')), '/')[1], split(format('{0}/default/{1}', parameters('storageAccountName'), variables('functionContentShareName')), '/')[2])]"
