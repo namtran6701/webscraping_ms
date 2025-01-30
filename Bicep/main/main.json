@@ -6371,7 +6371,7 @@
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('rgname')), 'Microsoft.Resources/deployments', 'vnetDeployment')]"
       ]
     },
-    {
+       {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
       "name": "roleforaisearch",
@@ -6411,7 +6411,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-              "templateHash": "10035841937924858908"
+              "templateHash": "4071531288404671062"
             }
           },
           "parameters": {
@@ -6445,19 +6445,17 @@
               "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountname')), parameters('aiSearchprincipalId'), 'Storage Blob Data Contributor')]",
               "properties": {
                 "principalId": "[parameters('aiSearchprincipalId')]",
-                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
-                "principalType": "ServicePrincipal"
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]"
               }
             },
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2020-10-01-preview",
-              "scope": "[format('Microsoft.Web/sites/{0}', parameters('functionAppName'))]",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', parameters('storageAccountname'))]",
               "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountname')), parameters('fapprincipalID'), 'Storage Blob Data Contributor')]",
               "properties": {
                 "principalId": "[parameters('fapprincipalID')]",
-                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
-                "principalType": "ServicePrincipal"
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]"
               }
             },
             {
@@ -6467,8 +6465,7 @@
               "name": "[guid(resourceId('Microsoft.CognitiveServices/accounts', parameters('cognitiveServiceName')), parameters('aiSearchprincipalId'), 'Cognitive Services OpenAI Contributor role')]",
               "properties": {
                 "principalId": "[parameters('aiSearchprincipalId')]",
-                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'a001fd3d-188f-4b5d-821b-7da978bf7442')]",
-                "principalType": "ServicePrincipal"
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'a001fd3d-188f-4b5d-821b-7da978bf7442')]"
               }
             },
             {
@@ -6478,8 +6475,7 @@
               "name": "[guid(resourceId('Microsoft.Search/searchServices', parameters('aisearchname')), parameters('openaiprincipalId'), 'Search Index Data Reader')]",
               "properties": {
                 "principalId": "[parameters('openaiprincipalId')]",
-                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '1407120a-92aa-4202-b7e9-c0e197c71c8f')]",
-                "principalType": "ServicePrincipal"
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '1407120a-92aa-4202-b7e9-c0e197c71c8f')]"
               }
             }
           ]
