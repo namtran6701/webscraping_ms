@@ -1,10 +1,10 @@
-# Welcome to Your Lab Environment! 
+# Welcome to Sample Code Implementation for Indexer with Azure Storage ! 
 
 ## Objective
 
-**Build a custom indexer pipeline on top of Azure AI Search** that enriches your index using the OpenAI service. Scrapy is being used to crawl data from public website given under configuration which is being used within Az function to crawl and upload chunks into Azure storage. Indexer purpose is to link with data source blob and upload to Azure AI index.
+**Build a knowledgebase , data ingestion solution along with  AI search indexer pipeline ** that enriches your index using the OpenAI service. Scrapy is being used to crawl data from public website given under configuration which is being used within Az function to crawl and upload chunks into Azure blob storage. Indexer purpose is to link with data source blob and upload to Azure AI index.
 
-**Azure Lab Instructions**
+**Azure Infra Instructions**
 
 ## Instructions to Log in to Azure Portal and Set Up Custom Template
 
@@ -38,7 +38,7 @@ Please copy/paste link below within Lab browser, provide the credentials mention
 
 - Review & Create Custom template to create baseline Infra structure
 
-### Step 2: Set RBAC for Azure resources on Azure portal
+### Step 2: Set RBAC for Azure resources on Azure portal - These are manual task for the sample code prospective, in actual project, DevOps pipeline or Git Hub Actions are being used to setup permissions and all other deployments.
 Your base infrastructure is ready, next is to setup RBAC for these resources to work
 - Under Storage account. Under Access Control (IAM) > Add > Add role assignments.
 Search for **"Storage Blob Data Contributor"** role and select **User, group, or service principal** and add members as your current user from resources tab and assign that as well and hit **Assign**.
