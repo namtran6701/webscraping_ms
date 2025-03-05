@@ -1,4 +1,4 @@
-# Welcome to Sample Code Implementation for Indexer with Azure Storage ! 
+# Code Implementation for Indexer with Azure Storage ! 
 
 ## Objective
 
