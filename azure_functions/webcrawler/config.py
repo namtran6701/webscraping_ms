@@ -245,6 +245,7 @@ class ConfigurationHandler:
         _configuration = yaml.safe_load(_configuration)
         _validated_configuration = CrawlerConfig.model_validate(
                 _configuration["crawler"]
+        )
         return _validated_configuration
 
     def save(
