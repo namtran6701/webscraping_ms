@@ -86,7 +86,7 @@ def crawler(crawlertimer: func.TimerRequest) -> None:
         raise e
 
 
-app.function_name(name="prioritycrawler")
+@app.function_name(name="prioritycrawler")
 @app.timer_trigger(
     schedule="%PRIORITY_CRAWLER_RUN_SCHEDULE%",
     arg_name="crawlertimer",
