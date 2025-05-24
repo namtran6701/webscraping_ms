@@ -1,0 +1,9 @@
+.venv
+.env
+.vscode
+.pytest_cache
+__pycache__
+.DS_Store
+__azurite_db_blob__.json
+__azurite_db_blob_extent__.json
+local.settings.json
